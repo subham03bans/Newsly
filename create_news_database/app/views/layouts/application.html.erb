@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CreateNewsDatabase</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+ <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="/news/index">Home</a>
+      <a class="brand" href="/news/sports">Sports</a>
+      <a class="brand" href="/news/business">Business</a>
+      <a class="brand" href="/news/technology">Technology</a>
+	  <a class="brand" href="/news/entertainment">Entertainment</a>
+
+
+    </div>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>
+
