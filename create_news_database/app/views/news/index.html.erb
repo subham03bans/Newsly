@@ -9,13 +9,13 @@
 <ul style=" list-style-type: none;">
 
 <% @all_news.each do |news| %>
-<li > <h2><%= news.title %></h2> <br> 
-  <h4><%= news.category %> </h4><br>
-  <p style="text-align:justify;"> <%= news.content %> </p> <br>
+<li > <h2><%= news.title %></h2> 
+  <h4><%= news.category %> </h4>
+  <p style="text-align:justify;"> <%= news.content.html_safe %> </p> 
   <img src= " <%= news.url %> "/>
 
  </li>
- <br/>
+
 <% end %>
 </ul>
 

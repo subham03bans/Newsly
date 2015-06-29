@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match "news/sports" => "news#sports", :via => :get
   match "news/business" => "news#business", :via => :get
   match "news/technology" => "news#technology", :via => :get
+  match "news/entertainment" => "news#entertainment", :via => :get
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

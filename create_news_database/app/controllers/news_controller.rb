@@ -16,9 +16,15 @@ class NewsController < ApplicationController
   	@all_news = News.select("*").where(:category => "tech")
   	render "index"
   end
+  def entertainment
+  	@all_news = News.select("*").where(:category => "entertainment")
+  	render "index"
+  end
 
   def create
-  	News.new(:category => params[:category], :title => params[:title], :content => params[:content], :url => params[:url]).save
+  	if !News.exists?(title: params[:title])
+	  	News.new(:category => params[:category], :title => params[:title], :content => params[:content], :url => params[:url]).save
+	end
 	redirect_to :action => :'index'
   end
 
