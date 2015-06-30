@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   get 'news/index'
+
   match "news/create" => "news#create", :via => :post
-  match "news/sports" => "news#sports", :via => :get
-  match "news/business" => "news#business", :via => :get
-  match "news/technology" => "news#technology", :via => :get
-  match "news/entertainment" => "news#entertainment", :via => :get
+  
+  get "news/sports" 
+  get "news/business" 
+  get "news/technology" 
+  get "news/entertainment" 
+  
   match "news/search" => "news#search", :via => :post
 
   # The priority is based upon order of creation: first created -> highest priority.

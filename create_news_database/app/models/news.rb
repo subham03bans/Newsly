@@ -10,7 +10,7 @@ class News < ActiveRecord::Base
         query: {
           multi_match: {
             query: query,
-            fields: ['title^10', 'text']
+            fields: ['title^10', 'content']
           }
         },
         highlight: {
