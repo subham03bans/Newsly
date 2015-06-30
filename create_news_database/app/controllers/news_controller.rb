@@ -21,16 +21,16 @@ class NewsController < ApplicationController
   	render "index"
   end
 def search
-    if params[:q].nil?
-      @all_news = []
+    if params[:q].nil? or params[:q].empty?
+      @all_news = News.all
       puts 'nilllllllllll'
     else
       @all_news= News.search params[:q]
       puts 'not nilllllllllll'
       #puts params[:q]
-      #puts @all_news
-      render "index"
+      puts @all_news
     end
+      render "index"
   end
 
   def create
