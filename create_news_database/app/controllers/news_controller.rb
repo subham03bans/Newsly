@@ -20,6 +20,7 @@ class NewsController < ApplicationController
   	@all_news = News.select("*").where(:category => "entertainment")
   	render "index"
   end
+  
 def search
     if params[:q].nil? or params[:q].empty?
       @all_news = News.all
@@ -31,6 +32,20 @@ def search
     end
       render "index"
   end
+
+def autocomplete
+  titles = Array.new
+  if params[:q].nil? or params[:q].empty?
+    puts 'empty'
+  else
+    news = News.autocomplete params[:q]
+    news.results.each do |t|
+       titles.push({t._source.title =>t._score})
+    end
+  end
+  render :json => titles.to_json  #news.results.to_json #    
+end
+
 
   def create
   	if !News.exists?(title: params[:title])
