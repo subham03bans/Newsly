@@ -1,6 +1,7 @@
 package info.androidhive.slidingmenu.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,27 +16,27 @@ import java.util.List;
 
 import info.androidhive.slidingmenu.R;
 import info.androidhive.slidingmenu.app.AppController;
-import info.androidhive.slidingmenu.model.Movie;
+import info.androidhive.slidingmenu.model.NewsObject;
 
 public class CustomListAdapter extends BaseAdapter {
 	private Fragment fragment;
 	private LayoutInflater inflater;
-	private List<Movie> movieItems;
+	private List<NewsObject> newsObjectItems;
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-	public CustomListAdapter(Fragment fragment, List<Movie> movieItems) {
+	public CustomListAdapter(Fragment fragment, List<NewsObject> newsObjectItems) {
 		this.fragment = fragment;
-		this.movieItems = movieItems;
+		this.newsObjectItems = newsObjectItems;
 	}
 
 	@Override
 	public int getCount() {
-		return movieItems.size();
+		return newsObjectItems.size();
 	}
 
 	@Override
 	public Object getItem(int location) {
-		return movieItems.get(location);
+		return newsObjectItems.get(location);
 	}
 
 	@Override
@@ -56,25 +57,35 @@ public class CustomListAdapter extends BaseAdapter {
 			imageLoader = AppController.getInstance().getImageLoader();
 		NetworkImageView thumbNail = (NetworkImageView) convertView
 				.findViewById(R.id.thumbnail);
-		TextView title = (TextView) convertView.findViewById(R.id.title);
-		TextView rating = (TextView) convertView.findViewById(R.id.rating);
-		TextView genre = (TextView) convertView.findViewById(R.id.genre);
-		TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+		TextView headline = (TextView) convertView.findViewById(R.id.headline);
+		TextView category = (TextView) convertView.findViewById(R.id.category);
+		TextView publisherName = (TextView) convertView.findViewById(R.id.publisher_name);
+		TextView upVotes = (TextView) convertView.findViewById(R.id.upvotes);
+		TextView downVotes = (TextView) convertView.findViewById(R.id.downvotes);
 
-		// getting movie data for the row
-		Movie m = movieItems.get(position);
+		// getting NewsObject data for the row
+		NewsObject newsObject = newsObjectItems.get(position);
 
 		// thumbnail image
-		thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+		thumbNail.setImageUrl(newsObject.thumbnailUrl, imageLoader);
 
-		// title
-		title.setText(m.getTitle());
+		// headline
+		headline.setText(newsObject.headline);
 
-		// rating
-		rating.setText("Rating: " + String.valueOf(m.getRating()));
+		// category
+		category.setText(newsObject.category);
+
+		//publishername
+		publisherName.setText(newsObject.publisherName);
+
+		//upvotes
+		upVotes.setText(""+newsObject.upvotes);
+
+		//downvotes
+		downVotes.setText(""+newsObject.downvotes);
 
 		// genre
-		String genreStr = "";
+		/*String genreStr = "";
 		for (String str : m.getGenre()) {
 			genreStr += str + ", ";
 		}
@@ -83,7 +94,7 @@ public class CustomListAdapter extends BaseAdapter {
 		genre.setText(genreStr);
 
 		// release year
-		year.setText(String.valueOf(m.getYear()));
+		year.setText(String.valueOf(m.getYear()));*/
 
 		return convertView;
 	}
