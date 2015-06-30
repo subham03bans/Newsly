@@ -12,19 +12,11 @@ class News < ActiveRecord::Base
             query: query,
             fields: ['title^10', 'content']
           }
-        },
-        highlight: {
-          pre_tags: ['<em>'],
-          post_tags: ['</em>'],
-          fields: {
-            title: {},
-            text: {}
-          }
         }
+
       }
     )
   end
 end
-
 
 News.import
