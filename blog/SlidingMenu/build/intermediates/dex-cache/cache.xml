@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/libs/volley.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/build/intermediates/pre-dexed/debug/volley-ebaf00b986d39a2f66c5637c0e7730cae0e9c61c.jar" />
+    </item>
+    <item
+        jar="/Users/shubhambansal/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-2dc021ba703699af90108d5136bc9caffc5ebffc.jar" />
+    </item>
+
+</items>
