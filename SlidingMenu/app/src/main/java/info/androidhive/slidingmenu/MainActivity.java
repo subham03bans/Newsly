@@ -1,7 +1,6 @@
 package info.androidhive.slidingmenu;
 
 import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
-import info.androidhive.slidingmenu.app.AppController;
 import info.androidhive.slidingmenu.model.NavDrawerItem;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-    private Fragment fragment = null;
 
 	// nav drawer title
 	private CharSequence mDrawerTitle;
@@ -169,11 +167,13 @@ public class MainActivity extends Activity {
 	 * */
 	private void displayView(int position) {
 		// update the main content by replacing fragments
+		Fragment fragment = null;
+
         switch (position) {
 		case 0:
-			//fragment = new HomeFragment();
+			fragment = new PagesFragment();
 			break;
-		/*case 1:
+		case 1:
 			fragment = new FindPeopleFragment();
 			break;
 		case 2:
@@ -187,7 +187,7 @@ public class MainActivity extends Activity {
 			break;
 		case 5:
 			fragment = new WhatsHotFragment();
-			break;*/
+			break;
 
 		default:
 			break;

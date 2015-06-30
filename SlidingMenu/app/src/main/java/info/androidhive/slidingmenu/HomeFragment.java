@@ -1,28 +1,16 @@
 package info.androidhive.slidingmenu;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import info.androidhive.slidingmenu.app.AppController;
 import info.androidhive.slidingmenu.model.Movie;
 
 import info.androidhive.slidingmenu.adapter.CustomListAdapter;
@@ -46,9 +34,9 @@ public class HomeFragment extends Fragment {
  
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //listView = (ListView) rootView.findViewById(R.id.list);
-        //adapter = new CustomListAdapter(this, movieList);
-        //listView.setAdapter(adapter);
+        listView = (ListView) rootView.findViewById(R.id.list);
+        adapter = new CustomListAdapter(this, movieList);
+        listView.setAdapter(adapter);
 
         /*pDialog = new ProgressDialog(this.getActivity());
         // Showing progress dialog before making http request

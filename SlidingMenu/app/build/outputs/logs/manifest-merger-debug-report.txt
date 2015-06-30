@@ -29,6 +29,14 @@ ADDED from AndroidManifest.xml:11:5
 		ADDED from AndroidManifest.xml:11:22
 application
 ADDED from AndroidManifest.xml:13:5
+	android:label
+		ADDED from AndroidManifest.xml:16:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:14:9
+	android:icon
+		ADDED from AndroidManifest.xml:15:9
+	android:theme
+		ADDED from AndroidManifest.xml:17:9
 activity#info.androidhive.slidingmenu.MainActivity
 ADDED from AndroidManifest.xml:19:9
 	android:screenOrientation

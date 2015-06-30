@@ -1,6 +1,5 @@
 package info.androidhive.slidingmenu.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +14,13 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.List;
 
 import info.androidhive.slidingmenu.R;
-import info.androidhive.slidingmenu.app.AppController;
 import info.androidhive.slidingmenu.model.Movie;
 
 public class CustomListAdapter extends BaseAdapter {
 	private Fragment fragment;
 	private LayoutInflater inflater;
 	private List<Movie> movieItems;
-	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+	//ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 	public CustomListAdapter(Fragment fragment, List<Movie> movieItems) {
 		this.fragment = fragment;
@@ -53,8 +51,8 @@ public class CustomListAdapter extends BaseAdapter {
 		if (convertView == null)
 			convertView = inflater.inflate(R.layout.list_row, null);
 
-		if (imageLoader == null)
-			imageLoader = AppController.getInstance().getImageLoader();
+		/*if (imageLoader == null)
+			imageLoader = AppController.getInstance().getImageLoader();*/
 		NetworkImageView thumbNail = (NetworkImageView) convertView
 				.findViewById(R.id.thumbnail);
 		TextView title = (TextView) convertView.findViewById(R.id.title);
@@ -66,7 +64,7 @@ public class CustomListAdapter extends BaseAdapter {
 		Movie m = movieItems.get(position);
 
 		// thumbnail image
-		thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+		//thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 		
 		// title
 		title.setText(m.getTitle());
