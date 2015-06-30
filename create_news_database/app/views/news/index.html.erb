@@ -1,4 +1,12 @@
 
+ <%= form_tag("search", :methode => :post) do |f| %>
+
+  <p>
+    <%= text_field_tag :q, params[:q] %>
+    <%= submit_tag "Go", name: nil %>
+  </p>
+<% end %>
+ 
 
 <div class="container">
   <div class="row">

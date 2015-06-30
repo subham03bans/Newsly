@@ -20,6 +20,18 @@ class NewsController < ApplicationController
   	@all_news = News.select("*").where(:category => "entertainment")
   	render "index"
   end
+def search
+    if params[:q].nil?
+      @all_news = []
+      puts 'nilllllllllll'
+    else
+      @all_news= News.search params[:q]
+      puts 'not nilllllllllll'
+      #puts params[:q]
+      #puts @all_news
+      render "index"
+    end
+  end
 
   def create
   	if !News.exists?(title: params[:title])
