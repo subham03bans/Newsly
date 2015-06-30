@@ -3,14 +3,25 @@ package info.androidhive.slidingmenu;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import info.androidhive.slidingmenu.app.AppController;
 import info.androidhive.slidingmenu.model.Movie;
 
 import info.androidhive.slidingmenu.adapter.CustomListAdapter;
@@ -38,14 +49,14 @@ public class HomeFragment extends Fragment {
         adapter = new CustomListAdapter(this, movieList);
         listView.setAdapter(adapter);
 
-        /*pDialog = new ProgressDialog(this.getActivity());
+        pDialog = new ProgressDialog(this.getActivity());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
 
 
         // Creating volley request obj
-        /*JsonArrayRequest movieReq = new JsonArrayRequest(url,
+        JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -95,7 +106,7 @@ public class HomeFragment extends Fragment {
         });
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(movieReq);*/
+        AppController.getInstance().addToRequestQueue(movieReq);
          
         return rootView;
     }
