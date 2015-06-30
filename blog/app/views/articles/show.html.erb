@@ -1,0 +1,18 @@
+
+
+<% if  correct_user(@user) %>
+	<H1> See your article : </H1>
+	<p>
+	  <strong>Title:</strong>
+	  <%= @article.title %>
+	</p>
+	 
+	<p>
+	  <strong>Text:</strong>
+	  <%= @article.text %>
+	</p>
+
+	<%= link_to 'Back', articles_path %>
+	<% else %>
+		<H1> Want to see your article: Sign up ! </H1>
+<% end %>
