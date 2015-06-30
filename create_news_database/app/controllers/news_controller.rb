@@ -27,7 +27,6 @@ def search
     else
       @all_news= News.search params[:q]
       puts 'not nilllllllllll'
-      #puts params[:q]
       puts @all_news
     end
       render "index"
