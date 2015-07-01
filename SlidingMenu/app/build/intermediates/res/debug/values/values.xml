@@ -42,7 +42,8 @@
     <dimen name="headline">17dp</dimen>
     <dimen name="publisher_name">15dp</dimen>
     <dimen name="tags">13dp</dimen>
-    <dimen name="votes">13dp</dimen>
+    <dimen name="votes">15dp</dimen>
+    <dimen name="votes_image">20dp</dimen>
     <!-- From: file:/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
