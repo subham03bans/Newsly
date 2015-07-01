@@ -1,13 +1,16 @@
 package info.androidhive.slidingmenu;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -61,16 +64,14 @@ public class HomeFragment extends Fragment {
                         try {
                             // Getting JSON Array
                             JSONArray newsObjects = response.getJSONArray(Constants.TAG_NEWS);
-                            int length = response.length();
+                            int length = newsObjects.length();
 
+                            Log.e("length of news items", " "+ length);
                             for (int i = 0; i < length; i++) {
                                 JSONObject obj = newsObjects.getJSONObject(i);
                                 NewsObject newsObject = new NewsObject();
 
                                 newsObject.headline = obj.getString("headline");
-
-                                newsObject.headline = obj.getString("title");
-
                                 newsObject.content = obj.getString("content");
                                 newsObject.summary = obj.getString("summary");
                                 newsObject.category = obj.getString("category");
@@ -111,7 +112,22 @@ public class HomeFragment extends Fragment {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(newsReq);
-         
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                Intent intent= new Intent(getActivity(), MainActivity2Activity.class);
+
+                Log.e("passed jsonn contro12l", "" + newsObjectsList.get(i).headline);
+
+                intent.putExtra("headline", newsObjectsList.get(i).headline);
+                intent.putExtra("url",newsObjectsList.get(i).thumbnailUrl);
+                intent.putExtra("content",newsObjectsList.get(i).content);
+
+                getActivity().startActivity(intent);
+            }
+        });
         return rootView;
     }
 

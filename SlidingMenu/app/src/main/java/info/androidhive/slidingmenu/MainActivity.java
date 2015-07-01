@@ -202,6 +202,8 @@ public class MainActivity extends Activity {
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
+
+
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else {
 			// error in creating fragment
