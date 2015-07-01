@@ -21,7 +21,7 @@
   <%= form_tag("search", :methode => :post) do |f| %>
 
   <p>
-    <%= text_field_tag :q, params[:q] %>
+    <%= text_field_tag :q, params[:q], autocomplete: "off", id: "autocomplete_search" %>
     <%= submit_tag "Go", name: nil, :class=>"btn" %>
   </p>
 <% end %>

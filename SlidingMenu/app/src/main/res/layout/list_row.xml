@@ -8,50 +8,75 @@
     <!-- Thumbnail Image -->
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="8dp" />
 
-    <!-- Movie Title -->
+    <!-- News Headline -->
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/title"
+        android:textSize="@dimen/headline"
         android:textStyle="bold" />
 
-    <!-- Rating -->
+    <!-- Category -->
     <TextView
-        android:id="@+id/rating"
-        android:layout_width="fill_parent"
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="1dip"
+        android:layout_below="@id/headline"
+        android:layout_marginTop="1dp"
         android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/rating" />
-    
-    <!-- Genre -->
+        android:textSize="@dimen/category" />
+
+    <!-- placeholder -->
     <TextView
-        android:id="@+id/genre"
-        android:layout_width="fill_parent"
+        android:id="@+id/placeholder"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rating"
+        android:layout_below="@id/headline"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/vertical_bar_char"
+        android:layout_toRightOf="@+id/category"
+        android:textSize="@dimen/category" />
+
+    <!--Publisher Name-->
+    <TextView
+        android:id="@+id/publisher_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headline"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/placeholder"
+        android:textSize="@dimen/publisher_name" />
+
+    <!-- Up Votes -->
+    <TextView
+        android:id="@+id/upvotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/thumbnail"
         android:textColor="@color/counter_text_color"
-        android:textSize="@dimen/genre" />
+        android:textSize="@dimen/votes" />
 
-    <!-- Release Year -->
+    <!-- Down Votes -->
     <TextView
-        android:id="@+id/releaseYear"
+        android:id="@+id/downvotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/red_color"
-        android:textSize="@dimen/year" />
+        android:layout_below="@id/category"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/upvotes"
+        android:textColor="@color/counter_text_color"
+        android:textSize="@dimen/votes" />
 
 </RelativeLayout>

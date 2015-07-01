@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "news/entertainment" 
 
   match "news/search" => "news#search", :via => :post
+  match "news/autocomplete" => "news#autocomplete", :via => :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

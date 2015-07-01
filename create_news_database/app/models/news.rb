@@ -16,6 +16,21 @@ class News < ActiveRecord::Base
 
       }
     )
+
+  end
+
+
+    def self.autocomplete(query)
+    __elasticsearch__.search(
+     {
+      query: {
+          multi_match: {
+            query: query,
+            fields: ['title']
+          }
+        }
+     }
+      )
   end
 end
 

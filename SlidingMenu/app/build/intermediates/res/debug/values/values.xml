@@ -38,10 +38,11 @@
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="genre">13dip</dimen>
-    <dimen name="rating">15dip</dimen>
-    <dimen name="title">17dp</dimen>
-    <dimen name="year">12dip</dimen>
+    <dimen name="category">15dp</dimen>
+    <dimen name="headline">17dp</dimen>
+    <dimen name="publisher_name">15dp</dimen>
+    <dimen name="tags">13dp</dimen>
+    <dimen name="votes">13dp</dimen>
     <!-- From: file:/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
@@ -49,6 +50,7 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="drawer_open">Slider Menu Opened</string>
+    <string name="vertical_bar_char">|</string>
     <!-- From: file:/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
