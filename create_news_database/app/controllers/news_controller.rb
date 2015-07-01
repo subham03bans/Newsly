@@ -2,7 +2,11 @@ class NewsController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
   $category = "*"
   def index
-  	@all_news = News.all
+    @all_news = News.all
+    $category = "*"
+  end
+  def index_android
+    @all_news = News.all
     $category = "*"
   end
   def sports
@@ -43,6 +47,7 @@ def search
     @display_id= params[:id]
     render 'index'
   end
+
 
 def autocomplete
   titles = Array.new
