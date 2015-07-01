@@ -1,24 +1,35 @@
 
+<% if correct_user(@user) %>
+<h4> Logged in </h4>
+<% end %>
 
 <div class="container">
   <div class="row">
 
- 
+
+
+	
+<% @all_news.each do |news| %>
 <div class="well">
 
 <ul style=" list-style-type: none;">
 
-<% @all_news.each do |news| %>
-<li > <h2><%= news.title %></h2> 
-  <h4><%= news.category %> </h4>
+<li>
+  <h2  id="<%= news.id %> " ><%= news.title %></h2> 
+  <h6><%= news.category %> </h6>  
   <p style="text-align:justify;"> <%= news.content.html_safe %> </p> 
   <img style="align:centre;" src= " <%= news.url %> "/>
+</li>
 
- </li>
-
-<% end %>
 </ul>
 
+<br\>
 </div>
+
+<% end %>
+
+
+
+
 </div>
 </div>

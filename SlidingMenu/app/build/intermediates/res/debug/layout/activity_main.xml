@@ -21,4 +21,4 @@
         android:dividerHeight="0dp"
         android:listSelector="@drawable/list_selector"
         android:background="@color/list_background"/>
-</android.support.v4.widget.DrawerLayout><!-- From: file:/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/src/main/res/layout/activity_main.xml -->
+</android.support.v4.widget.DrawerLayout><!-- From: file:/Users/Khandesh/Desktop/Newsly/SlidingMenu/app/src/main/res/layout/activity_main.xml -->

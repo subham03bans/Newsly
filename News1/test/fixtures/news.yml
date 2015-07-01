@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  headline: MyString
+  content: MyText
+  image_url: MyString
+  publisher: MyString
+  summary: MyText
+  pub_date: 2015-06-30 11:09:09
+  agency: MyString
+  fb_likes: 1
+  tweets: 1
+  google_plus_shares: 1
+  newsly_upvotes: 1
+  newsly_downvotes: 1
+
+two:
+  headline: MyString
+  content: MyText
+  image_url: MyString
+  publisher: MyString
+  summary: MyText
+  pub_date: 2015-06-30 11:09:09
+  agency: MyString
+  fb_likes: 1
+  tweets: 1
+  google_plus_shares: 1
+  newsly_upvotes: 1
+  newsly_downvotes: 1

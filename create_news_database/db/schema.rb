@@ -25,4 +25,14 @@ ActiveRecord::Schema.define(version: 20150629090126) do
     t.datetime "updated_at", null: false
   end
 
+create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
 end

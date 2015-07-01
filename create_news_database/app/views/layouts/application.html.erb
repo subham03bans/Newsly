@@ -21,12 +21,25 @@
   <%= form_tag("search", :methode => :post) do |f| %>
 
   <p>
-    <%= text_field_tag :q, params[:q] %>
+    <%= text_field_tag :q, params[:q], autocomplete: "off", id: "autocomplete_search" %>
     <%= submit_tag "Go", name: nil, :class=>"btn" %>
   </p>
 <% end %>
 </div>
+
+
+<div class="brand">
+      <% if current_user %>
+        Signed in as <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+      <% else %>
+        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+      <% end %>
+</div>
+
  
+
+
     </div>
   </div>
 <br/>
