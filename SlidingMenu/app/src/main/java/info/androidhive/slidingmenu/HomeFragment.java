@@ -34,7 +34,7 @@ import info.androidhive.slidingmenu.util.Constants;
 import info.androidhive.slidingmenu.util.JSONParser;
 
 public class HomeFragment extends Fragment {
-    private List<NewsObject> newsObjectsList = new ArrayList<NewsObject>();
+    private static List<NewsObject> newsObjectsList = new ArrayList<NewsObject>();
     private ListView listView;
     private CustomListAdapter adapter;
     private ProgressDialog pDialog;
@@ -121,10 +121,7 @@ public class HomeFragment extends Fragment {
 
                 Log.e("passed jsonn contro12l", "" + newsObjectsList.get(i).headline);
 
-                intent.putExtra("headline", newsObjectsList.get(i).headline);
-                intent.putExtra("url",newsObjectsList.get(i).thumbnailUrl);
-                intent.putExtra("content",newsObjectsList.get(i).content);
-
+                intent.putExtra("id", ""+i);
                 getActivity().startActivity(intent);
             }
         });
@@ -225,5 +222,10 @@ public class HomeFragment extends Fragment {
             pDialog.dismiss();
             pDialog = null;
         }
+    }
+
+    public static NewsObject get_news(int i) {
+
+        return  newsObjectsList.get(i);
     }
 }

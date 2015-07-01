@@ -44,30 +44,29 @@ public class MainActivity2Activity extends Activity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
 
-        String headline=intent.getStringExtra("headline");
-        String url=intent.getStringExtra("url");
-        String content=intent.getStringExtra("content");
+        int id= Integer.parseInt(intent.getStringExtra("id"));
 
+        NewsObject news_to_display=HomeFragment.get_news(id);
 
 //        NewsObject newsObjectsList = new NewsObject(t1);
-        Log.e("passed jsonn contro0", headline);
-        Log.e("passed jsonn contro url", url);
         setContentView(R.layout.activity_main_activity2);
 
         TextView textView1 = (TextView) findViewById(R.id.headline_detailed_view);
         TextView textView2 = (TextView) findViewById(R.id.contents_detailed_view);
+        TextView category = (TextView) findViewById(R.id.category_detailed_view);
 
         ImageView imge1= (ImageView) findViewById(R.id.thumbnail_detailed_view);
 
 
             new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
-                    .execute(url);
+                    .execute(news_to_display.thumbnailUrl);
 
 
 
 
-        textView1.setText(headline);
-        textView2.setText(Html.fromHtml(content));
+        textView1.setText(news_to_display.headline);
+        textView2.setText(Html.fromHtml(news_to_display.content));
+        category.setText(news_to_display.category);
 
 //        R.id.textView
 
