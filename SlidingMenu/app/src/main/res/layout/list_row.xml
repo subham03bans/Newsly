@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
+        android:layout_marginLeft="5dp"
         android:textSize="@dimen/headline"
         android:textStyle="bold" />
 
@@ -30,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/headline"
         android:layout_marginTop="1dp"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/category" />
 
@@ -56,26 +58,51 @@
         android:layout_toRightOf="@+id/placeholder"
         android:textSize="@dimen/publisher_name" />
 
+    <ImageView
+        android:id="@+id/upvotes_image"
+        android:layout_width="@dimen/votes_image"
+        android:layout_height="@dimen/votes_image"
+        android:adjustViewBounds="true"
+        android:layout_below="@id/category"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:src="@drawable/ic_launcher" />
+
     <!-- Up Votes -->
     <TextView
         android:id="@+id/upvotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/votes_image"
+        android:layout_height="@dimen/votes_image"
         android:layout_below="@id/category"
+        android:gravity="center"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_marginLeft="1dp"
+        android:layout_toRightOf="@+id/upvotes_image"
         android:textColor="@color/counter_text_color"
         android:textSize="@dimen/votes" />
+
+    <ImageView
+        android:id="@+id/downvotes_image"
+        android:layout_width="@dimen/votes_image"
+        android:layout_height="@dimen/votes_image"
+        android:adjustViewBounds="true"
+        android:layout_below="@id/category"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/upvotes"
+        android:src="@drawable/ic_launcher" />
 
     <!-- Down Votes -->
     <TextView
         android:id="@+id/downvotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/votes_image"
+        android:layout_height="@dimen/votes_image"
         android:layout_below="@id/category"
+        android:gravity="center"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/upvotes"
+        android:layout_marginLeft="1dp"
+        android:layout_toRightOf="@+id/downvotes_image"
         android:textColor="@color/counter_text_color"
         android:textSize="@dimen/votes" />
 

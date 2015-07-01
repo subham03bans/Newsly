@@ -10,7 +10,7 @@
         android:divider="@color/list_divider"
         android:dividerHeight="0dp"
         android:listSelector="@drawable/list_row_selector" />
-    
+
 
 </RelativeLayout>
 <!-- From: file:/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/src/main/res/layout/fragment_home.xml -->

@@ -12,14 +12,16 @@ import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
+import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import info.androidhive.slidingmenu.adapter.CustomListAdapter;
@@ -46,22 +48,23 @@ public class HomeFragment extends Fragment {
         adapter = new CustomListAdapter(this, newsObjectsList);
         listView.setAdapter(adapter);
 
+        showPDialog();
+
         //new JSONParse().execute();
 
-        // Creating volley request obj
-        JsonArrayRequest newsReq = new JsonArrayRequest(Constants.HOME_URL,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest newsReq = new JsonObjectRequest(Method.GET, Constants.HOME_URL,
+                null, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         hidePDialog();
 
                         try {
                             // Getting JSON Array
-
+                            JSONArray newsObjects = response.getJSONArray(Constants.TAG_NEWS);
                             int length = response.length();
 
                             for (int i = 0; i < length; i++) {
-                                JSONObject obj = response.getJSONObject(i);
+                                JSONObject obj = newsObjects.getJSONObject(i);
                                 NewsObject newsObject = new NewsObject();
 
                                 newsObject.headline = obj.getString("headline");
@@ -80,13 +83,11 @@ public class HomeFragment extends Fragment {
                                 newsObject.upvotes = obj.getInt("newsly_upvotes");
                                 newsObject.downvotes = obj.getInt("newsly_downvotes");
 
-                                // tags is json array
-                    /*JSONArray tagsArray = obj.getJSONArray("tags");
-                    ArrayList<String> tags = new ArrayList<String>();
-                    for (int j = 0; j < tagsArray.length(); j++) {
-                        tags.add((String) tagsArray.get(j));
-                    }
-                    newsObject.tags = tags;*/
+                                // tags is a string
+                                String tagsStr = obj.getString("tags");
+                                String [] tagsArray = tagsStr.split(Constants.TAGS_DELIM);
+                                newsObject.tags = new ArrayList<String>(Arrays.asList(tagsArray));
+
                                 newsObjectsList.add(newsObject);
                             }
 
@@ -102,7 +103,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 hidePDialog();
-
             }
         });
 
@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-    private class JSONParse extends AsyncTask<String, String, JSONObject> {
+    /*private class JSONParse extends AsyncTask<String, String, JSONObject> {
         private ProgressDialog pDialog;
 
         @Override
@@ -166,12 +166,12 @@ public class HomeFragment extends Fragment {
                     newsObject.downvotes = obj.getInt("newsly_downvotes");
 
                     // tags is json array
-                    /*JSONArray tagsArray = obj.getJSONArray("tags");
+                    *//*JSONArray tagsArray = obj.getJSONArray("tags");
                     ArrayList<String> tags = new ArrayList<String>();
                     for (int j = 0; j < tagsArray.length(); j++) {
                         tags.add((String) tagsArray.get(j));
                     }
-                    newsObject.tags = tags;*/
+                    newsObject.tags = tags;*//*
                     newsObjectsList.add(newsObject);
                 }
 
@@ -191,6 +191,14 @@ public class HomeFragment extends Fragment {
                 pDialog = null;
             }
         }
+    }*/
+
+    private void showPDialog() {
+        pDialog = new ProgressDialog(this.getActivity());
+        pDialog.setMessage("Getting Data ...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(true);
+        pDialog.show();
     }
 
     private void hidePDialog() {
