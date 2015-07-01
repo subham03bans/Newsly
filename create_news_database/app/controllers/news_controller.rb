@@ -20,7 +20,7 @@ class NewsController < ApplicationController
   	@all_news = News.select("*").where(:category => "entertainment")
   	render "index"
   end
-  
+
 def search
     if params[:q].nil? or params[:q].empty?
       @all_news = News.all
@@ -40,7 +40,10 @@ def autocomplete
   else
     news = News.autocomplete params[:q]
     news.results.each do |t|
-       titles.push({t._source.title =>t._score})
+      if t._score > 0.9 
+       titles.push(t._source.title)
+       #titles.push({"title"=>t._source.title,"score"=>t._score})
+      end
     end
   end
   render :json => titles.to_json  #news.results.to_json #    
