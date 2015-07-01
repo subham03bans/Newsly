@@ -68,6 +68,9 @@ public class HomeFragment extends Fragment {
                                 NewsObject newsObject = new NewsObject();
 
                                 newsObject.headline = obj.getString("headline");
+
+                                newsObject.headline = obj.getString("title");
+
                                 newsObject.content = obj.getString("content");
                                 newsObject.summary = obj.getString("summary");
                                 newsObject.category = obj.getString("category");

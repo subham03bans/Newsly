@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "news/business" 
   get "news/technology" 
   get "news/entertainment" 
-  
+
   match "news/search" => "news#search", :via => :post
   match "news/autocomplete" => "news#autocomplete", :via => :get
 
@@ -16,6 +16,22 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'news#index'
+
+  match 'sessions/create' => "sessions#create", :via => :get
+  match 'sessions/destroy' => "sessions#destroy", :via => :get
+
+#  get 'sessions/destroy'
+
+#-----Google Authentication  : 
+    get 'auth/:provider/callback', to: 'sessions#create'
+    get 'auth/failure', to: redirect('/')
+    get 'signout', to: 'sessions#destroy', as: 'signout'
+
+    resources :sessions, only: [:create, :destroy]
+    resource :home, only: [:show]
+
+
+#------- Google Authentication End
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

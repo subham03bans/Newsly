@@ -106,4 +106,4 @@
         android:textColor="@color/counter_text_color"
         android:textSize="@dimen/votes" />
 
-</RelativeLayout><!-- From: file:/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/app/src/main/res/layout/list_row.xml -->
+</RelativeLayout><!-- From: file:/Users/Khandesh/Desktop/Newsly/SlidingMenu/app/src/main/res/layout/list_row.xml -->
