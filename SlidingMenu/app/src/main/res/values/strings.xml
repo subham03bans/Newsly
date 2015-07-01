@@ -6,6 +6,7 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="vertical_bar_char">|</string>
+    <string name="try_url">http://timesofindia.indiatimes.com/thumb/msid-47815599,width-300,resizemode-4/Sneha-Singh.jpg</string>
     
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -30,5 +31,11 @@
     
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main_activity2">MainActivity2Activity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
