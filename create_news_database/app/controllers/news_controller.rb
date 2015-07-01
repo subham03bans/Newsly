@@ -1,23 +1,29 @@
 class NewsController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
+  $category = "*"
   def index
   	@all_news = News.all
+    $category = "*"
   end
   def sports
-  	@all_news = News.select("*").where(:category => "sports")
-  	render "index"
+    $category = "sports"
+  	@all_news = News.select("*").where(:category => $category)
+   	render "index"
   	#redirect_to :action => :'index'
   end
   def business
-  	@all_news = News.select("*").where(:category => "business")
-  	render "index"
+  	 $category = "business"
+     @all_news = News.select("*").where(:category => $category)
+  	 render "index"
   end
   def technology
-  	@all_news = News.select("*").where(:category => "tech")
+    $category = "tech"  
+  	@all_news = News.select("*").where(:category => $category)
   	render "index"
   end
   def entertainment
-  	@all_news = News.select("*").where(:category => "entertainment")
+  	$category = "entertainment"
+    @all_news = News.select("*").where(:category => $category)
   	render "index"
   end
 def search
@@ -31,7 +37,11 @@ def search
     end
       render "index"
   end
-
+  def show
+    @all_news = News.select("*").where(:category => $category)
+    @display_id= params[:id]
+    render 'index'
+  end
   def create
   	if !News.exists?(title: params[:title])
 	  	News.new(:category => params[:category], :title => params[:title], :content => params[:content], :url => params[:url]).save
