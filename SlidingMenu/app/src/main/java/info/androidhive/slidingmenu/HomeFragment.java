@@ -228,4 +228,8 @@ public class HomeFragment extends Fragment {
 
         return  newsObjectsList.get(i);
     }
+
+    public static int get_news_numbers() {
+        return newsObjectsList.size();
+    }
 }

@@ -12,15 +12,19 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.Touch;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,15 +42,17 @@ import info.androidhive.slidingmenu.model.NewsObject;
 
 
 public class MainActivity2Activity extends Activity {
-
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
+    private   int id=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
 
-        int id= Integer.parseInt(intent.getStringExtra("id"));
+         id = Integer.parseInt(intent.getStringExtra("id"));
 
-        NewsObject news_to_display=HomeFragment.get_news(id);
+        NewsObject news_to_display = HomeFragment.get_news(id);
 
 //        NewsObject newsObjectsList = new NewsObject(t1);
         setContentView(R.layout.activity_main_activity2);
@@ -54,21 +60,126 @@ public class MainActivity2Activity extends Activity {
         TextView textView1 = (TextView) findViewById(R.id.headline_detailed_view);
         TextView textView2 = (TextView) findViewById(R.id.contents_detailed_view);
         TextView category = (TextView) findViewById(R.id.category_detailed_view);
+        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview1);
 
-        ImageView imge1= (ImageView) findViewById(R.id.thumbnail_detailed_view);
-
-
-            new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
-                    .execute(news_to_display.thumbnailUrl);
+        ImageView imge1 = (ImageView) findViewById(R.id.thumbnail_detailed_view);
 
 
+        new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
+                .execute(news_to_display.thumbnailUrl);
 
 
         textView1.setText(news_to_display.headline);
         textView2.setText(Html.fromHtml(news_to_display.content));
         category.setText(news_to_display.category);
 
-//        R.id.textView
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        x1 = event.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x2 = event.getX();
+                        float deltaX = x2 - x1;
+                        if (Math.abs(deltaX) > MIN_DISTANCE) {
+                            // Left to Right swipe action
+                            if (x2 > x1) {
+                                Toast.makeText(getApplicationContext(), "Loading next", Toast.LENGTH_SHORT).show();
+                                id =id -1;
+                                if(id<0){
+                                    id= 0;
+                                }else
+                                    reload();
+                            }
+
+                            // Right to left swipe action
+                            else {
+                                Toast.makeText(getApplicationContext(), "Loading Previous", Toast.LENGTH_SHORT).show();
+                                id =id +1;
+                                if(id>=HomeFragment.get_news_numbers()){
+                                    id= id-1;
+                                }else
+                                    reload();
+                            }
+
+                        }
+
+                        break;
+                }
+                return false;
+            }
+        });
+
+
+
+
+    }
+
+    private void reload() {
+        NewsObject news_to_display = HomeFragment.get_news(id);
+
+//        NewsObject newsObjectsList = new NewsObject(t1);
+        setContentView(R.layout.activity_main_activity2);
+
+        TextView textView1 = (TextView) findViewById(R.id.headline_detailed_view);
+        TextView textView2 = (TextView) findViewById(R.id.contents_detailed_view);
+        TextView category = (TextView) findViewById(R.id.category_detailed_view);
+        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview1);
+
+        ImageView imge1 = (ImageView) findViewById(R.id.thumbnail_detailed_view);
+
+
+        new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
+                .execute(news_to_display.thumbnailUrl);
+
+
+        textView1.setText(news_to_display.headline);
+        textView2.setText(Html.fromHtml(news_to_display.content));
+        category.setText(news_to_display.category);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        x1 = event.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x2 = event.getX();
+                        float deltaX = x2 - x1;
+                        if (Math.abs(deltaX) > MIN_DISTANCE) {
+                            // Left to Right swipe action
+                            if (x2 > x1) {
+                                Toast.makeText(getApplicationContext(), "Loading next", Toast.LENGTH_SHORT).show();
+                                id =id -1;
+                                if(id<0){
+                                    id= 0;
+                                }else
+                                    reload();
+                            }
+
+                            // Right to left swipe action
+                            else {
+                                Toast.makeText(getApplicationContext(), "Loading Previous", Toast.LENGTH_SHORT).show();
+                                id =id +1;
+                                if(id>=HomeFragment.get_news_numbers()){
+                                    id= id-1;
+                                }else
+                                    reload();
+                            }
+
+                        }
+
+                        break;
+                }
+                return false;
+            }
+        });
+
 
     }
 
