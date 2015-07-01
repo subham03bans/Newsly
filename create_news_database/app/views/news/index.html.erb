@@ -1,3 +1,15 @@
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  
+<script type="text/javascript">
+function get_ac(){
+ 	$.get("/news/autocomplete.json?",{q:$('#searchh').val()},function(data, status){
+ 		console.log(data)
+        $('#searchh').autocomplete({
+    		source: data
+    	});
+    });
+ }
+ </script>
 
 <% if correct_user(@user) %>
 <h4> Logged in </h4>
