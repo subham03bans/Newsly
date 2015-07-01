@@ -106,7 +106,8 @@ public final class R {
         public static final int hello_blank_fragment=0x7f080005;
         public static final int hello_world=0x7f080006;
         public static final int title_activity_main_activity2=0x7f080007;
-        public static final int vertical_bar_char=0x7f080008;
+        public static final int try_url=0x7f080008;
+        public static final int vertical_bar_char=0x7f080009;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

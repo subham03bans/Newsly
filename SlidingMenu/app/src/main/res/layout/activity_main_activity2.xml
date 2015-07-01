@@ -4,19 +4,22 @@
     android:layout_height="wrap_content"
     android:background="@drawable/list_row_selector"
     android:padding="8dp" >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-<ScrollView
-    android:layout_width="100dp"
-    android:layout_height="100dp">
-    <View
+        <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
     <ImageView
         android:id="@+id/thumbnail_detailed_view"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:adjustViewBounds="true"
+        android:background="@color/blue_color"       />
 
 
     <TextView
@@ -36,8 +39,11 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:textSize="@dimen/headline"
+        android:gravity="left"
+        android:layout_gravity="center_vertical|right"
+        android:layout_weight="1"
         />
-    </View>
+        </LinearLayout>
 </ScrollView>
 
 

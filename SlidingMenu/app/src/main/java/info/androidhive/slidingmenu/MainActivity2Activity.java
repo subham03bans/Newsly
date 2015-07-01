@@ -1,16 +1,24 @@
 package info.androidhive.slidingmenu;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,7 +67,7 @@ public class MainActivity2Activity extends Activity {
 
 
         textView1.setText(headline);
-        textView2.setText(content);
+        textView2.setText(Html.fromHtml(content));
 
 //        R.id.textView
 
@@ -105,12 +113,20 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-        return mIcon11;
+//        mIcon11.get
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        Bitmap new1= mIcon11.createScaledBitmap(mIcon11, width, (width / mIcon11.getWidth()) * mIcon11.getHeight(), true);
+        return  new1;
     }
 
     protected void onPostExecute(Bitmap result) {
         bmImage.setImageBitmap(result);
     }
+
 }
 
 }
