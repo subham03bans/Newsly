@@ -1,10 +1,15 @@
 require 'elasticsearch/model'
 
 class News < ActiveRecord::Base
+  belongs_to :user
+  
+  has_reputation :votes, source: :user, aggregated_by: :sum 
+  
+
 	include Elasticsearch::Model
   	include Elasticsearch::Model::Callbacks
 
-  	 def self.search(query)
+  	def self.search(query)
     __elasticsearch__.search(
       {
         query: {
@@ -20,7 +25,7 @@ class News < ActiveRecord::Base
   end
 
 
-    def self.autocomplete(query)
+  def self.autocomplete(query)
     __elasticsearch__.search(
      {
       query: {

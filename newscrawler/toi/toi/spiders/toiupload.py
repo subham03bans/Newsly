@@ -27,6 +27,8 @@ class ToiSpider(scrapy.Spider):
     def parse_callback(self, response):
         #self.open_links(response)
 
+        create_url = 'http://10.1.2.154:3000/api/news/'
+
         if response.url.split('/')[-2] == 'articleshow':
             #all the valid posts
             title = response.url.split("/")[-3]
@@ -41,9 +43,9 @@ class ToiSpider(scrapy.Spider):
                 return
             with open(filename, 'w') as f:
                 f.write(title+"\n\n"+time+"\n\n"+ image+"\n\n"+content)
-            payload = {'category':self.cat,'title':title,'content':content,'url':image,'time':time}
+            payload = {'category':self.cat,'headline':title,'content':content,'image_url':image, 'pub_date':time, 'publisher':'toi'}
             try:
-                requests.post('http://localhost:3000/news/create',data=payload)
+                requests.post(create_url, data=payload)
             except:
                 print 'Server not live'
 
