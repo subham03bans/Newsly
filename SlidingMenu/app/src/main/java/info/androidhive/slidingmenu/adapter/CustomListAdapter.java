@@ -1,6 +1,7 @@
 package info.androidhive.slidingmenu.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,9 +58,10 @@ public class CustomListAdapter extends BaseAdapter {
 			imageLoader = AppController.getInstance().getImageLoader();
 		NetworkImageView thumbNail = (NetworkImageView) convertView
 				.findViewById(R.id.thumbnail);
+
 		TextView headline = (TextView) convertView.findViewById(R.id.headline);
 		TextView category = (TextView) convertView.findViewById(R.id.category);
-		TextView publisherName = (TextView) convertView.findViewById(R.id.publisher_name);
+		TextView pubTime = (TextView) convertView.findViewById(R.id.pub_time);
 		TextView upVotes = (TextView) convertView.findViewById(R.id.upvotes);
 		TextView downVotes = (TextView) convertView.findViewById(R.id.downvotes);
 
@@ -73,10 +75,12 @@ public class CustomListAdapter extends BaseAdapter {
 		headline.setText(newsObject.headline);
 
 		// category
-		category.setText(newsObject.category);
+		category.setTextColor(fragment.getResources().getColor(getCategoryColor(newsObject.category)));
+		category.setText(newsObject.getCategory());
 
-		//publishername
-		publisherName.setText(newsObject.publisherName);
+
+		//publishDate/Time
+		pubTime.setText(newsObject.publicationDateTime);
 
 		//upvotes
 		upVotes.setText(""+newsObject.upvotes);
@@ -98,5 +102,23 @@ public class CustomListAdapter extends BaseAdapter {
 
 		return convertView;
 	}
+
+    private int getCategoryColor(String category) {
+        if(category.equals("india")) {
+            return R.color.india_cat_color;
+        } else if(category.equals("world")){
+            return R.color.world_cat_color;
+        } else if(category.equals("sports")){
+            return R.color.sports_cat_color;
+        } else if(category.equals("entertainment")){
+            return R.color.entertainment_cat_color;
+        } else if(category.equals("business")){
+            return R.color.business_cat_color;
+        } else if(category.equals("technology")){
+            return R.color.technology_cat_color;
+        } else {
+            return R.color.action_bar_color;
+        }
+    }
 
 }

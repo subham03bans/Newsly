@@ -1,18 +1,23 @@
 package info.androidhive.slidingmenu;
 
 import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
+import info.androidhive.slidingmenu.adapter.TabsPagerAdapter;
 import info.androidhive.slidingmenu.model.NavDrawerItem;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -21,15 +26,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements
+        ActionBar.TabListener {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
+    private ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
 
+    // Tab titles
+    private String[] tabs = { "Top Rated", "Games", "Movies" };
 	// nav drawer title
 	private CharSequence mDrawerTitle;
-
-	// used to store app title
+    // used to store app title
 	private CharSequence mTitle;
 
 	// slide menu items
@@ -83,9 +93,25 @@ public class MainActivity extends Activity {
 				navDrawerItems);
 		mDrawerList.setAdapter(adapter);
 
-		// enabling action bar app icon and behaving it as toggle button
-		getActionBar().setDisplayHomeAsUpEnabled(false);
-		getActionBar().setHomeButtonEnabled(true);
+        actionBar = getActionBar();
+
+        // Initilization of tabbed views
+        /*viewPager = (ViewPager) findViewById(R.id.drawer_layout);
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        viewPager.setAdapter(mAdapter);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);*/
+
+
+        // enabling action bar app icon and behaving it as toggle button
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeButtonEnabled(true);
+
+        // Adding Tabs
+        for (String tab_name : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab_name)
+                    .setTabListener(this));
+        }
 
 		/*mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, //nav menu toggle icon
@@ -110,7 +136,22 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	/**
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    /**
 	 * Slide menu item click listener
 	 * */
 	private class SlideMenuClickListener implements
@@ -144,10 +185,12 @@ public class MainActivity extends Activity {
 					mDrawerLayout.openDrawer(GravityCompat.START);
 				}
 				return true;
-		case R.id.action_settings:
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			case R.id.action_search:
+				return true;
+			case R.id.action_settings:
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 

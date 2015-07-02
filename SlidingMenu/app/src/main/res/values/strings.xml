@@ -5,7 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
-    <string name="vertical_bar_char">|</string>
+    <string name="vertical_bar_char"> | </string>
+    <string name="action_search">Search for topics...</string>
     <string name="try_url">http://timesofindia.indiatimes.com/thumb/msid-47815599,width-300,resizemode-4/Sneha-Singh.jpg</string>
     
     <!-- Nav Drawer Menu Items -->
