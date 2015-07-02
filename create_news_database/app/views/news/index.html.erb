@@ -32,12 +32,15 @@ function get_ac(){
   
 
 </li>
-	<%= form_tag("comment", :methode => :post) do |f|%>
-	<%= text_field_tag( :comment_id, params[:comment]) %> 
-	<%= submit_tag "Comment", :class => "btn" %>
-	<% end %>
+<br/>
+  <p>
+   <%= news.reputation_for(:votes) %>
+     <% if current_user && !current_user.voted_for?(news) %>
+    <%= link_to "UpVote", {:action => "vote", :query => "up", :id => news.id},:class=> "btn" %>
+    <%= link_to "DownVote", {:action => "vote", :query => "down", :id => news.id} , :class=> "btn" %>
+    <% end %>
+  </p>
 </ul>
-
 <br\>
 </div>
 
