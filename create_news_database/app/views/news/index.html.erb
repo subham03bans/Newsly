@@ -1,6 +1,6 @@
+<% if correct_user(@user) %>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  
-<script type="text/javascript">
+  <script type="text/javascript">
 function get_ac(){
  	$.get("/news/autocomplete.json?",{q:$('#searchh').val()},function(data, status){
  		console.log(data)
@@ -11,9 +11,7 @@ function get_ac(){
  }
  </script>
 
-<% if correct_user(@user) %>
 <h4> Logged in </h4>
-<% end %>
 
 <div class="container">
   <div class="row">
@@ -31,8 +29,13 @@ function get_ac(){
   <h6><%= news.category %> </h6>  
   <p style="text-align:justify;"> <%= news.content.html_safe %> </p> 
   <img style="align:centre;" src= " <%= news.url %> "/>
-</li>
+  
 
+</li>
+	<%= form_tag("comment", :methode => :post) do |f|%>
+	<%= text_field_tag( :comment_id, params[:comment]) %> 
+	<%= submit_tag "Comment", :class => "btn" %>
+	<% end %>
 </ul>
 
 <br\>
@@ -40,8 +43,6 @@ function get_ac(){
 
 <% end %>
 
-
-
-
 </div>
 </div>
+<% end %>

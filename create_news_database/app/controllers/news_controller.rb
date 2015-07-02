@@ -4,12 +4,15 @@ class NewsController < ApplicationController
   def index
   	@all_news = News.all
     $category = "*"
+    respond_to do |format|
+      format.html { render "index"}
+      format.json { render json: @all_news}
+    end
   end
   def sports
     $category = "sports"
   	@all_news = News.select("*").where(:category => $category)
    	render "index"
-  	#redirect_to :action => :'index'
   end
   def business
   	 $category = "business"
@@ -24,7 +27,10 @@ class NewsController < ApplicationController
   def entertainment
   	$category = "entertainment"
     @all_news = News.select("*").where(:category => $category)
-  	render "index"
+    respond_to do |format|
+      format.html { render "index"}
+      format.json { render json: @all_news}
+    end
   end
 
 def search
