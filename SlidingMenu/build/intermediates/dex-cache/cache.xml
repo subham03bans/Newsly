@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/shubhambansal/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jar="/Users/sushantraikar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="/Users/shubhambansal/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-2dc021ba703699af90108d5136bc9caffc5ebffc.jar" />
+        <dex dex="/Users/sushantraikar/projects/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-208a26f4c39f6e51d4328fa3aeb56b37c9e70b84.jar" />
     </item>
     <item
-        jar="/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/libs/volley.jar"
+        jar="/Users/sushantraikar/projects/Newsly/SlidingMenu/libs/volley.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
-        <dex dex="/Users/shubhambansal/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/volley-ebaf00b986d39a2f66c5637c0e7730cae0e9c61c.jar" />
+        <dex dex="/Users/sushantraikar/projects/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/volley-f743e43568caefeccbabf5c3c1f632690dfb24e7.jar" />
     </item>
 
 </items>

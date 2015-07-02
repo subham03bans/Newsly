@@ -1,19 +1,19 @@
+<% if correct_user(@user) %>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  
-<script type="text/javascript">
+  <script type="text/javascript">
 function get_ac(){
- 	$.get("/news/autocomplete.json?",{q:$('#searchh').val()},function(data, status){
- 		console.log(data)
+  $.get("/news/autocomplete.json?",{q:$('#searchh').val()},function(data, status){
+    console.log(data)
         $('#searchh').autocomplete({
-    		source: data
-    	});
+        source: data
+      });
     });
  }
+
+ 
  </script>
 
-<% if correct_user(@user) %>
 <h4> Logged in </h4>
-<% end %>
 
 <div class="container">
   <div class="row">
@@ -27,21 +27,29 @@ function get_ac(){
 <ul style=" list-style-type: none;">
 
 <li>
-  <h2  id="<%= news.id %> " ><%= news.title %></h2> 
+  <a  Onclick="show_div(<%= news.id %>)">
+  <h2><%= news.title %></h2> 
+</a>
+<div id="<%= news.id %> ">
   <h6><%= news.category %> </h6>  
-  <p style="text-align:justify;"> <%= news.content.html_safe %> </p> 
+  <p style="text-align:justify;" > <%= news.content.html_safe %> </p> 
   <img style="align:centre;" src= " <%= news.url %> "/>
+  </div>
 </li>
-
+<br/>
+  <p>
+   <%= news.reputation_for(:votes) %>
+     <% if current_user && !current_user.voted_for?(news) %>
+    <%= link_to "UpVote", {:action => "vote", :query => "up", :id => news.id},:class=> "btn", :methode => "post" %>
+    <%= link_to "DownVote", {:action => "vote", :query => "down", :id => news.id} , :class=> "btn", :methode => "post" %>
+    <% end %>
+  </p>
 </ul>
-
 <br\>
 </div>
 
 <% end %>
 
-
-
-
 </div>
 </div>
+<% end %>

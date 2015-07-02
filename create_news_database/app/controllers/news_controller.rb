@@ -2,14 +2,17 @@ class NewsController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
   $category = "*"
   def index
-  	@all_news = News.all
+  	@all_news = News.find_with_reputation(:votes, :all, order: "votes desc")
     $category = "*"
+    respond_to do |format|
+      format.html { render "index"}
+      format.json { render json: @all_news}
+    end
   end
   def sports
     $category = "sports"
   	@all_news = News.select("*").where(:category => $category)
    	render "index"
-  	#redirect_to :action => :'index'
   end
   def business
   	 $category = "business"
@@ -24,7 +27,10 @@ class NewsController < ApplicationController
   def entertainment
   	$category = "entertainment"
     @all_news = News.select("*").where(:category => $category)
-  	render "index"
+    respond_to do |format|
+      format.html { render "index"}
+      format.json { render json: @all_news}
+    end
   end
 
 def search
@@ -58,6 +64,15 @@ def autocomplete
     end
   end
   render :json => titles.to_json  #news.results.to_json #    
+end
+def vote
+  value = params[:query] == "up" ? 1 : -1
+   @all_news = News.select("*").where(:category => $category)
+   @news = News.find(params[:id])
+
+  @news.add_or_update_evaluation(:votes, value , current_user)
+  #render 'index'
+  redirect_to :back, notice: "Thank you for voting."
 end
 
   def create

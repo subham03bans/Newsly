@@ -1,6 +1,11 @@
 require 'elasticsearch/model'
 
 class News < ActiveRecord::Base
+  belongs_to :user
+  
+  has_reputation :votes, source: :user, aggregated_by: :sum 
+  
+
 	include Elasticsearch::Model
   	include Elasticsearch::Model::Callbacks
 
