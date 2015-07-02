@@ -81,5 +81,9 @@ end
 	end
 	redirect_to :action => :'index'
   end
+  def show_news_details
+    @news_details = News.find(params[:id])  
+    render 'show_news'
+  end
 
 end
