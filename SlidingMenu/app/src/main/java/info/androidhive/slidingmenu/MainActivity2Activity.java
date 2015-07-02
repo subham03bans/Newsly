@@ -2,6 +2,7 @@ package info.androidhive.slidingmenu;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,8 +24,11 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.toolbox.NetworkImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,12 +42,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.androidhive.slidingmenu.app.AppController;
 import info.androidhive.slidingmenu.model.NewsObject;
+
+import static android.app.PendingIntent.getActivity;
 
 
 public class MainActivity2Activity extends Activity {
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
+    //left = 0 , right = 1
+    static int SLIDE_DIR = 0;
     private   int id=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +71,12 @@ public class MainActivity2Activity extends Activity {
         TextView category = (TextView) findViewById(R.id.category_detailed_view);
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview1);
 
-        ImageView imge1 = (ImageView) findViewById(R.id.thumbnail_detailed_view);
+        NetworkImageView imge1 = (NetworkImageView) findViewById(R.id.thumbnail_detailed_view);
 
 
-        new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
-                .execute(news_to_display.thumbnailUrl);
-
+       // new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
+         //       .execute(news_to_display.thumbnailUrl);
+        imge1.setImageUrl(news_to_display.thumbnailUrl, AppController.getInstance().getImageLoader());
 
         textView1.setText(news_to_display.headline);
         textView2.setText(Html.fromHtml(news_to_display.content));
@@ -88,6 +97,7 @@ public class MainActivity2Activity extends Activity {
                         if (Math.abs(deltaX) > MIN_DISTANCE) {
                             // Left to Right swipe action
                             if (x2 > x1) {
+                                SLIDE_DIR = 1;
                                 Toast.makeText(getApplicationContext(), "Loading next", Toast.LENGTH_SHORT).show();
                                 id =id -1;
                                 if(id<0){
@@ -98,6 +108,7 @@ public class MainActivity2Activity extends Activity {
 
                             // Right to left swipe action
                             else {
+                                SLIDE_DIR = 0;
                                 Toast.makeText(getApplicationContext(), "Loading Previous", Toast.LENGTH_SHORT).show();
                                 id =id +1;
                                 if(id>=HomeFragment.get_news_numbers()){
@@ -120,74 +131,44 @@ public class MainActivity2Activity extends Activity {
     }
 
     private void reload() {
-        NewsObject news_to_display = HomeFragment.get_news(id);
+        this.finish();
 
-//        NewsObject newsObjectsList = new NewsObject(t1);
-        setContentView(R.layout.activity_main_activity2);
-
-        TextView textView1 = (TextView) findViewById(R.id.headline_detailed_view);
-        TextView textView2 = (TextView) findViewById(R.id.contents_detailed_view);
-        TextView category = (TextView) findViewById(R.id.category_detailed_view);
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview1);
-
-        ImageView imge1 = (ImageView) findViewById(R.id.thumbnail_detailed_view);
-
-
-        new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
-                .execute(news_to_display.thumbnailUrl);
+        //scrollView.setVisibility(View.INVISIBLE);
+        Intent intent= new Intent(this, MainActivity2Activity.class);
 
 
-        textView1.setText(news_to_display.headline);
-        textView2.setText(Html.fromHtml(news_to_display.content));
-        category.setText(news_to_display.category);
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
+        intent.putExtra("id", "" + id);
 
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        x1 = event.getX();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        x2 = event.getX();
-                        float deltaX = x2 - x1;
-                        if (Math.abs(deltaX) > MIN_DISTANCE) {
-                            // Left to Right swipe action
-                            if (x2 > x1) {
-                                Toast.makeText(getApplicationContext(), "Loading next", Toast.LENGTH_SHORT).show();
-                                id =id -1;
-                                if(id<0){
-                                    id= 0;
-                                }else
-                                    reload();
-                            }
+        this.startActivity(intent);
+        if (SLIDE_DIR==0) {
+            overridePendingTransition(R.anim.push_out_left, R.anim.pull_in_right);
+        }
+        else{
+            overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+        }
 
-                            // Right to left swipe action
-                            else {
-                                Toast.makeText(getApplicationContext(), "Loading Previous", Toast.LENGTH_SHORT).show();
-                                id =id +1;
-                                if(id>=HomeFragment.get_news_numbers()){
-                                    id= id-1;
-                                }else
-                                    reload();
-                            }
-
-                        }
-
-                        break;
-                }
-                return false;
-            }
-        });
+        if(true) {
+            return;
+        }
 
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+
         return true;
+
     }
 
     @Override
