@@ -39,4 +39,12 @@ public class NewsObject {
         this.downvotes = downvotes;
         this.tags = tags;
     }
+
+    public String getCategory() {
+        char firstLetter = category.charAt(0);
+        if(firstLetter>='a' && firstLetter<='z') {
+            category = (char)(firstLetter-32)+category.substring(1);
+        }
+        return category;
+    }
 }

@@ -16,4 +16,13 @@
     <color name="red_color">#ff0000</color>
     <color name="green_color">#00ff00</color>
     <color name="blue_color">#0000ff</color>
+
+    <color name="india_cat_color">#0000ff</color>
+    <color name="world_cat_color">#ff0000</color>
+    <color name="business_cat_color">#ff0000</color>
+    <color name="entertainment_cat_color">#ff0000</color>
+    <color name="sports_cat_color">#ff0000</color>
+    <color name="technology_cat_color">#ff0000</color>
+
+    <color name="headline_color">#000000</color>
 </resources>

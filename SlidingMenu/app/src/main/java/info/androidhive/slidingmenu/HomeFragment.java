@@ -66,7 +66,6 @@ public class HomeFragment extends Fragment {
                             JSONArray newsObjects = response.getJSONArray(Constants.TAG_NEWS);
                             int length = newsObjects.length();
 
-                            Log.e("length of news items", " "+ length);
                             for (int i = 0; i < length; i++) {
                                 JSONObject obj = newsObjects.getJSONObject(i);
                                 NewsObject newsObject = new NewsObject();
