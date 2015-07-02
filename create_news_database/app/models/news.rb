@@ -4,7 +4,7 @@ class News < ActiveRecord::Base
 	include Elasticsearch::Model
   	include Elasticsearch::Model::Callbacks
 
-  	 def self.search(query)
+  	def self.search(query)
     __elasticsearch__.search(
       {
         query: {
@@ -20,7 +20,7 @@ class News < ActiveRecord::Base
   end
 
 
-    def self.autocomplete(query)
+  def self.autocomplete(query)
     __elasticsearch__.search(
      {
       query: {
