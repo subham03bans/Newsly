@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/Khandesh/Desktop/Newsly/SlidingMenu/libs/volley.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
-        <dex dex="/Users/Khandesh/Desktop/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/volley-6d40f629d77cdce6b0524a02b30ae7e20a213486.jar" />
-    </item>
-    <item
-        jar="/Users/Khandesh/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jar="/Users/shubhambansal/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="/Users/Khandesh/Desktop/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-85f17ae35e47b5efec27bf7c1f6324fcbff99c2e.jar" />
+        <dex dex="/Users/shubhambansal/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-2dc021ba703699af90108d5136bc9caffc5ebffc.jar" />
+    </item>
+    <item
+        jar="/Users/shubhambansal/AndroidStudioProjects/SlidingMenu/libs/volley.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/Users/shubhambansal/Newsly/SlidingMenu/app/build/intermediates/pre-dexed/debug/volley-ebaf00b986d39a2f66c5637c0e7730cae0e9c61c.jar" />
     </item>
 
 </items>
