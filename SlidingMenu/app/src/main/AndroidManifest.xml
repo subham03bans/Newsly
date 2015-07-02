@@ -30,7 +30,7 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
@@ -41,18 +41,10 @@
             android:name=".MainActivity2Activity"
             android:label="@string/title_activity_main_activity2" >
         </activity>
-        <activity android:name=".SearchableActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
         <!-- enable the search dialog to send searches to SearchableActivity -->
         <meta-data
             android:name="android.app.default_searchable"
-            android:value=".SearchableActivity" />
+            android:value=".MainActivity" />
 
 
 

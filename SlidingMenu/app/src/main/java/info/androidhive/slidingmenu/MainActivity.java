@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.content.Context;
 import android.app.SearchManager;
+import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements
         ActionBar.TabListener {
@@ -44,6 +46,7 @@ public class MainActivity extends FragmentActivity implements
 	private CharSequence mDrawerTitle;
     // used to store app title
 	private CharSequence mTitle;
+	private String query_string;
 
 	// slide menu items
 	private String[] navMenuTitles;
@@ -133,9 +136,21 @@ public class MainActivity extends FragmentActivity implements
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);*/
 
-		if (savedInstanceState == null) {
-			// on first time display view for first nav item
-			displayView(0);
+
+
+		Intent intent = getIntent();
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			query_string = intent.getStringExtra(SearchManager.QUERY);
+			//TextView search_query = (TextView) findViewById(R.id.search_text);
+
+			Log.e("App","I freaked out by the awesomness of this app and typed : "+query_string);
+			displayView(10);
+		}
+		else{
+			if (savedInstanceState == null) {
+				// on first time display view for first nav item
+				displayView(0);
+			}
 		}
 	}
 
@@ -246,6 +261,12 @@ public class MainActivity extends FragmentActivity implements
 		case 5:
 			fragment = new WhatsHotFragment();
 			break;
+	    case 10:
+			fragment = new SearchFragment();
+			Bundle bundl = new Bundle();
+			bundl.putString("query_string", query_string);
+			fragment.setArguments(bundl);
+			break;
 
 		default:
 			break;
@@ -257,12 +278,15 @@ public class MainActivity extends FragmentActivity implements
 					.replace(R.id.frame_container, fragment).commit();
 
 			// update selected item and title, then close the drawer
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
+			if(position != 10) {
+
+				mDrawerList.setItemChecked(position, true);
+				mDrawerList.setSelection(position);
+				setTitle(navMenuTitles[position]);
+				mDrawerLayout.closeDrawer(mDrawerList);
+			}
 
 
-			mDrawerLayout.closeDrawer(mDrawerList);
 		} else {
 			// error in creating fragment
 			Log.e("MainActivity", "Error in creating fragment");
