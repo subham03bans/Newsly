@@ -89,5 +89,6 @@
     <orderEntry type="library" exported="" name="support-v4-18.0.0" level="project" />
     <orderEntry type="library" exported="" name="volley" level="project" />
     <orderEntry type="library" exported="" name="1_volley" level="project" />
+    <orderEntry type="library" exported="" name="2_volley" level="project" />
   </component>
 </module>

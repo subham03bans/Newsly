@@ -25,6 +25,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.content.Context;
+import android.app.SearchManager;
 
 public class MainActivity extends FragmentActivity implements
         ActionBar.TabListener {
@@ -167,7 +170,17 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
+		// Associate searchable configuration with the SearchView
+		SearchManager searchManager =
+				(SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView =
+				(SearchView) menu.findItem(R.id.action_search).getActionView();
+		searchView.setSearchableInfo(
+				searchManager.getSearchableInfo(getComponentName()));
+
+
 		return true;
+
 	}
 
 	@Override
@@ -186,6 +199,8 @@ public class MainActivity extends FragmentActivity implements
 				}
 				return true;
 			case R.id.action_search:
+				onSearchRequested();
+				Log.e("myApp", "search Requested ------------------- (--) ");
 				return true;
 			case R.id.action_settings:
 				return true;
