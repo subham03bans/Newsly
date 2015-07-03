@@ -3,4 +3,4 @@
     android:duration="300"
     android:fromXDelta="0%"
     android:interpolator="@android:anim/decelerate_interpolator"
-    android:toXDelta="-100%" /><!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/anim/push_out_left.xml -->
+    android:toXDelta="-100%" /><!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/anim/push_out_left.xml -->

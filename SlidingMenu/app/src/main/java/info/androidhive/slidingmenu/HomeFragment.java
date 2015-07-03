@@ -23,9 +23,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 import info.androidhive.slidingmenu.adapter.CustomListAdapter;
 import info.androidhive.slidingmenu.app.AppController;
@@ -65,6 +71,7 @@ public class HomeFragment extends Fragment {
                             // Getting JSON Array
                             JSONArray newsObjects = response.getJSONArray(Constants.TAG_NEWS);
                             int length = newsObjects.length();
+                            String tempDateTime = "";
 
                             for (int i = 0; i < length; i++) {
                                 JSONObject obj = newsObjects.getJSONObject(i);
@@ -77,7 +84,18 @@ public class HomeFragment extends Fragment {
                                 newsObject.publisherName = obj.getString("publisher");
                                 newsObject.agencyName = obj.getString("agency");
                                 newsObject.thumbnailUrl = obj.getString("image_url");
-                                newsObject.publicationDateTime = obj.getString("pub_date");
+
+                                //time and date
+                                tempDateTime = obj.getString("pub_date");
+                                DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+                                Date date = null;
+                                try {
+                                    date = format.parse(tempDateTime);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                newsObject.publicationDateTime = date;
+
                                 newsObject.place = obj.getString("place");
 
                                 newsObject.fbLikes = obj.getInt("fb_likes");

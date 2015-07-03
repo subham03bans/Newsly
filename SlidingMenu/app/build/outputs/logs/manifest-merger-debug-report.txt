@@ -1,6 +1,8 @@
 -- Merging decision tree log ---
 manifest
 ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
 	package
 		ADDED from AndroidManifest.xml:3:5
 		INJECTED from AndroidManifest.xml:0:0
@@ -11,8 +13,6 @@ ADDED from AndroidManifest.xml:2:1
 		ADDED from AndroidManifest.xml:4:5
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
-	xmlns:android
-		ADDED from AndroidManifest.xml:2:11
 uses-sdk
 ADDED from AndroidManifest.xml:7:5
 	android:targetSdkVersion
@@ -91,7 +91,7 @@ ADDED from AndroidManifest.xml:40:9
 		ADDED from AndroidManifest.xml:41:13
 meta-data#android.app.default_searchable
 ADDED from AndroidManifest.xml:45:9
-	android:value
-		ADDED from AndroidManifest.xml:47:13
 	android:name
 		ADDED from AndroidManifest.xml:46:13
+	android:value
+		ADDED from AndroidManifest.xml:47:13

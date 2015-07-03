@@ -1,6 +1,7 @@
 package info.androidhive.slidingmenu.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NewsObject {
     public String headline;
@@ -10,7 +11,7 @@ public class NewsObject {
     public String category;
     public String publisherName;
     public String agencyName;
-    public String publicationDateTime;
+    public Date publicationDateTime;
     public String place;
     public int fbLikes = 0;
     public int tweets = 0;
@@ -28,7 +29,7 @@ public class NewsObject {
         this.category = category;
     }
 
-    public NewsObject(String headline, String thumbnailUrl, String category, String publicationDateTime, String publisherName, int upvotes, int downvotes,
+    public NewsObject(String headline, String thumbnailUrl, String category, Date publicationDateTime, String publisherName, int upvotes, int downvotes,
                       ArrayList<String> tags) {
         this.headline = headline;
         this.thumbnailUrl = thumbnailUrl;

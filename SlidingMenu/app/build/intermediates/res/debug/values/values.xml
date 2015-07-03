@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
@@ -18,7 +18,7 @@
         <item>Entertainment</item>
         <item>Business</item>
     </string-array>
-    <!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/values/color.xml -->
+    <!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="action_bar_color">#ff0000</color>
     <color name="blue_color">#0000ff</color>
@@ -41,7 +41,7 @@
     <color name="sports_cat_color">#ff0000</color>
     <color name="technology_cat_color">#ff0000</color>
     <color name="world_cat_color">#ff0000</color>
-    <!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -51,7 +51,7 @@
     <dimen name="tags">13dp</dimen>
     <dimen name="votes">15dp</dimen>
     <dimen name="votes_image">20dp</dimen>
-    <!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_search">Search for topics...</string>
     <string name="action_settings">Settings</string>
@@ -66,7 +66,7 @@
     <string name="title_activity_searchable">SearchableActivity</string>
     <string name="try_url">http://timesofindia.indiatimes.com/thumb/msid-47815599,width-300,resizemode-4/Sneha-Singh.jpg</string>
     <string name="vertical_bar_char"> | </string>
-    <!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>

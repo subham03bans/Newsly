@@ -79,7 +79,7 @@ public class MainActivity2Activity extends Activity {
         imge1.setImageUrl(news_to_display.thumbnailUrl, AppController.getInstance().getImageLoader());
 
         textView1.setText(news_to_display.headline);
-        textView2.setText(Html.fromHtml(news_to_display.content));
+        textView2.setText(Html.fromHtml(news_to_display.summary));
         category.setText(news_to_display.category);
 
 

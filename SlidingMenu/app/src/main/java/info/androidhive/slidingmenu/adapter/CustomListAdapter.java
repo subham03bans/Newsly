@@ -1,8 +1,9 @@
 package info.androidhive.slidingmenu.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
+import java.util.Date;
+
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,7 @@ public class CustomListAdapter extends BaseAdapter {
 
 
 		//publishDate/Time
-		pubTime.setText(newsObject.publicationDateTime);
+		pubTime.setText(timeAgo(newsObject.publicationDateTime));
 
 		//upvotes
 		upVotes.setText(""+newsObject.upvotes);
@@ -120,5 +121,10 @@ public class CustomListAdapter extends BaseAdapter {
             return R.color.action_bar_color;
         }
     }
+
+    //Wow an amazing thing....DateUtils!!!
+	private String timeAgo(Date datetime) {
+        return DateUtils.getRelativeTimeSpanString(datetime.getTime()).toString();
+	}
 
 }
