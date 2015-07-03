@@ -46,8 +46,10 @@ public class HomeFragment extends Fragment {
     private ProgressDialog pDialog;
 
     public HomeFragment(){}
-	
-	@Override
+    String[] abc;
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
@@ -58,6 +60,7 @@ public class HomeFragment extends Fragment {
         listView.setAdapter(adapter);
 
         showPDialog();
+
 
         //new JSONParse().execute();
 
@@ -110,6 +113,7 @@ public class HomeFragment extends Fragment {
                                 newsObject.tags = new ArrayList<String>(Arrays.asList(tagsArray));
 
                                 newsObjectsList.add(newsObject);
+
                             }
 
                         } catch (JSONException e) {
@@ -134,11 +138,18 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+                Bundle bundle =new Bundle();
+
+                bundle.putStringArray("some string",abc);
+
                 Intent intent= new Intent(getActivity(), MainActivity2Activity.class);
 
                 Log.e("passed jsonn contro12l", "" + newsObjectsList.get(i).headline);
 
+
                 intent.putExtra("id", ""+i);
+                intent.putExtra("type", ""+1);
+
                 getActivity().startActivity(intent);
             }
         });

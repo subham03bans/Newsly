@@ -45,6 +45,7 @@ public class SearchFragment extends Fragment {
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        newsObjectsList = new ArrayList<NewsObject>();
  
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -142,7 +143,7 @@ public class SearchFragment extends Fragment {
                 Intent intent= new Intent(getActivity(), MainActivity2Activity.class);
 
                 Log.e("passed jsonn contro12l", "" + newsObjectsList.get(i).headline);
-
+                intent.putExtra("type", "2");
                 intent.putExtra("id", ""+i);
                 getActivity().startActivity(intent);
             }
@@ -170,6 +171,7 @@ public class SearchFragment extends Fragment {
 
         return  newsObjectsList.get(i);
     }
+
 
     public static int get_news_numbers() {
         return newsObjectsList.size();

@@ -60,6 +60,7 @@ public class MainActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		Log.e("Activity","New activity created");
 		mTitle = mDrawerTitle = getTitle();
 
 		// load slide menu items
@@ -198,6 +199,8 @@ public class MainActivity extends FragmentActivity implements
 
 	}
 
+
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// toggle nav drawer on selecting action bar app icon/title
@@ -324,5 +327,15 @@ public class MainActivity extends FragmentActivity implements
         super.onDestroy();
        // fragment.hidePDialog();
     }
+		@Override
+	public void startActivity(Intent intent) {
+			if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+				finish();
+				Log.e("Activity", "Activity deleted");
 
+			}
+			//finish();
+	    super.startActivity(intent);
+	    overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+	}
 }

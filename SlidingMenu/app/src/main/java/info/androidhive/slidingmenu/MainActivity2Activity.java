@@ -2,6 +2,7 @@ package info.androidhive.slidingmenu;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -54,14 +55,27 @@ public class MainActivity2Activity extends Activity {
     //left = 0 , right = 1
     static int SLIDE_DIR = 0;
     private   int id=1;
+    int type=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
 
-         id = Integer.parseInt(intent.getStringExtra("id"));
+        id = Integer.parseInt(intent.getStringExtra("id"));
+        type = Integer.parseInt(intent.getStringExtra("type"));
 
-        NewsObject news_to_display = HomeFragment.get_news(id);
+
+        NewsObject news_to_display= new NewsObject();
+        Log.e("Type is ", "" + type);
+        switch (type){
+            case 1:
+                news_to_display = HomeFragment.get_news(id);
+                break;
+            case 2:
+                news_to_display = SearchFragment.get_news(id);
+                break;
+        }
 
 //        NewsObject newsObjectsList = new NewsObject(t1);
         setContentView(R.layout.activity_main_activity2);
@@ -139,6 +153,7 @@ public class MainActivity2Activity extends Activity {
 
 
         intent.putExtra("id", "" + id);
+        intent.putExtra("type", "" + type);
 
         this.startActivity(intent);
         if (SLIDE_DIR==0) {

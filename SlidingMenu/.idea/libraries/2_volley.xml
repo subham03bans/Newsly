@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="2_volley">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../sushantraikar/projects/Newsly/SlidingMenu/libs/volley.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

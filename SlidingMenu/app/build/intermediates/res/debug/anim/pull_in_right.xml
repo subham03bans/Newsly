@@ -4,4 +4,4 @@
     android:fromXDelta="100%"
     android:toXDelta="0%"
     android:interpolator="@android:anim/decelerate_interpolator"
-    /><!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/anim/pull_in_right.xml -->
+    /><!-- From: file:/Users/sushantraikar/projects/Newsly/SlidingMenu/app/src/main/res/anim/pull_in_right.xml -->
