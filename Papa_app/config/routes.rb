@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  post '/request' => 'login#receives_data'
+  post '/request' => 'recommendation#check_packet'
+  get '/login' => 'login#receives_data'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
