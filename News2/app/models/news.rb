@@ -1,6 +1,8 @@
-require 'stanford-core-nlp'
+#require 'stanford-core-nlp'
 
 	class News < ActiveRecord::Base
+
+  	has_reputation :votes, source: :news, aggregated_by: :sum 
 
 		include Elasticsearch::Model
 	  	include Elasticsearch::Model::Callbacks
@@ -43,7 +45,7 @@ require 'stanford-core-nlp'
 	  ##TODO
 		def self.summarise(news)
 			# Use the model files for a different language than English.
-			StanfordCoreNLP.use :french # or :german
+=begin			StanfordCoreNLP.use :french # or :german
 
 			text = 'Angela Merkel met Nicolas Sarkozy on January 25th in ' +
 			   'Berlin to discuss a new austerity package. Sarkozy ' +
@@ -66,8 +68,9 @@ require 'stanford-core-nlp'
 			    #puts token.get(:character_offset_end).to_s
 			  #end
 			end
-			news.summary = "Hello Beautiful World!!"
+=end			news.summary = "Hello Beautiful World!!"
 		end
 	end
 
-	News.import
+News.import
+

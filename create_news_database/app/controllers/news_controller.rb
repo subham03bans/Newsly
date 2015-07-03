@@ -71,6 +71,7 @@ def vote
    @news = News.find(params[:id])
 
   @news.add_or_update_evaluation(:votes, value , current_user)
+  puts current_user.id
   #render 'index'
   redirect_to :back, notice: "Thank you for voting."
 end

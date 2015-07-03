@@ -29,7 +29,7 @@ function get_ac(){
   <h2><%= @news_details.title %></h2> 
 <p>
    <%= @news_details.reputation_for(:votes) %>
-     <% if current_user && !current_user.voted_for?(@news_details) %>
+     <% if current_user %>
     <%= link_to "UpVote", {:action => "vote", :query => "up", :id => @news_details.id},:class=> "btn btn-primary btn-lg", :methode => "post" %>
     <%= link_to "DownVote", {:action => "vote", :query => "down", :id => @news_details.id} , :class=> "btn btn-primary btn-lg", :methode => "post" %>
     <% end %>

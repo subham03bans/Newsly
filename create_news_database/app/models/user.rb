@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-has_many :evaluations, class_name: "RSEvaluation", as: :source
-has_reputation :votes, source: {reputation: :votes, of: :news}, aggregated_by: :sum
+#has_many :evaluations, class_name: "RSEvaluation", as: :source
+#has_reputation :votes, source: {reputation: :votes, of: :news}, aggregated_by: :sum
 
-def voted_for?(news)
-  evaluations.where(target_type: news.class, target_id: news.id).present?  
-end
+#def voted_for?(news)
+ # evaluations.where(target_type: news.class, target_id: news.id).present?  
+#end
 
 
  # has_reputation :votes, source: {reputation: :votes, of: :user}, aggregated_by: :sum

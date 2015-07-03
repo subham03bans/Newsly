@@ -8,6 +8,11 @@ require 'api_constraints'
         match "news/search" => "news#search", :via => :post
         match "news/autocomplete" => "news#autocomplete", :via => :get
         match "news/num/:id" => "news#num", :via => :get
+
+        match "news/vote" => "news#vote", :via => :post
+        match "news/get_votes" => "news#get_votes", :via => :post
+
+
       end
   end
 

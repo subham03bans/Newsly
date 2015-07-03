@@ -86,6 +86,21 @@ module Api
 			  end
 			  render :json => titles.to_json  #news.results.to_json #    
 			end
+			def vote
+  				value = params[:query] == "up" ? 1 : -1
+   				@news = News.find(params[:id])
+   				puts "yooooo"
+
+  				@news.add_or_update_evaluation(:votes, value , @news)
+  				#puts "zinglilalala"
+  				#puts @news.reputation_for(:votes)
+  				render :json => @news
+  			end
+  			def get_votes
+				@news = News.find(params[:id2])
+  				@votes= @news.reputation_for(:votes)
+  				render :json => @votes.json
+  			end
 
 			private
 			  def news_params

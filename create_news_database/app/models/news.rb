@@ -39,4 +39,5 @@ class News < ActiveRecord::Base
   end
 end
 
+ 
 News.import

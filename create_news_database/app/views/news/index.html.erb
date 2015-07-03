@@ -32,10 +32,13 @@ function get_ac(){
 	  		  	<div class="col-lg-6" >     
 		 			<p style="text-align:justify; width:100%; height:260px; overflow:hidden; font-size:17px; padding-bottom:10px; "> 
 		 				<%= news.content.html_safe %> </p> 
-		  
-			        	<%= news.reputation_for(:votes).to_i %> <span>  Votes &nbsp; &nbsp;| &nbsp; </span> 
-		   
-					<%= link_to "Read More", {:action => "show_news_details", :id => news.id} , :class => "btn btn-primary btn-lg", :methode => "get" %>
+
+		 				<% begin %>
+		  				<%= news.reputation_for(:votes).to_i %> <span>  Votes &nbsp; &nbsp;| &nbsp; </span> 
+		   				<% rescue %>
+		   				<% end %>
+		   				
+		   				<%= link_to "Read More", {:action => "show_news_details", :id => news.id} , :class => "btn btn-primary btn-lg", :methode => "get" %>
 				</div>
 			</div>
 	  </div>
