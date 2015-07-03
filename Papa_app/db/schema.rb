@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20150701104134) do
 
   create_table "user_histories", force: :cascade do |t|
     t.text     "google_id"
-    t.text     "india"
-    t.text     "world"
-    t.text     "business"
-    t.text     "tech"
-    t.text     "sports"
-    t.text     "entertainment"
+    t.integer  "india"
+    t.integer  "world"
+    t.integer  "business"
+    t.integer  "tech"
+    t.integer  "sports"
+    t.integer  "entertainment"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "users_id"
