@@ -1,0 +1,52 @@
+<% if correct_user(@user) %>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script type="text/javascript">
+function get_ac(){
+  $.get("/news/autocomplete.json?",{q:$('#searchh').val()},function(data, status){
+    console.log(data)
+        $('#searchh').autocomplete({
+        source: data
+      });
+    });
+ }
+
+ 
+ </script>
+
+
+<div class="container">
+  <div class="row">
+
+
+
+  <div class="blog-post" style="font-size:large;">
+
+<div class="well">
+
+<ul style=" list-style-type: none;">
+
+<li>
+  <h2><%= @news_details.title %></h2> 
+<p>
+   <%= @news_details.reputation_for(:votes) %>
+     <% if current_user && !current_user.voted_for?(@news_details) %>
+    <%= link_to "UpVote", {:action => "vote", :query => "up", :id => @news_details.id},:class=> "btn btn-primary btn-lg", :methode => "post" %>
+    <%= link_to "DownVote", {:action => "vote", :query => "down", :id => @news_details.id} , :class=> "btn btn-primary btn-lg", :methode => "post" %>
+    <% end %>
+  </p>
+<div id="<%= @news_details.id %> ">
+  <h6><%= @news_details.category %> </h6>  
+  <p style="text-align:justify;" > <%= @news_details.content.html_safe %> </p> 
+  <img style="align:centre;" src= " <%= @news_details.url %> "/>
+  </div>
+</li>
+<br/>
+  
+</ul>
+<br\>
+</div>
+
+</div>
+</div>
+</div>
+<% end %>
