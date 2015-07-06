@@ -7,17 +7,23 @@ module Api
 			respond_to :json
 
 			def index
-		    	@news = News.all
+		    	@news = Rails.cache.fetch('index', {expires_in: 10000}) {
+		    		News.order(pub_date: :desc).all
+		    	}
 		    	respond_with :news => @news
 		  	end
 
 			def show
-				@news = News.select("*").where(:category => params[:id])
+				@news = Rails.cache.fetch('show', {expires_in: 10000}) {
+					News.order(pub_date: :desc).select("*").where(:category => params[:id])
+				}
 			   	respond_with :news => @news
 		  	end
 
 		  	def num
-		  		@num = News.select("*").where(:category => params[:id]).count
+		  		@num = Rails.cache.fetch('num', {expires_in: 10000}) { 
+		  			News.select("*").where(:category => params[:id]).count
+		  		}
 			   	respond_with :num => @num
 		  	end
 
@@ -65,11 +71,17 @@ module Api
 
 			def search
 			    if params[:q].nil? or params[:q].empty?
-			      @all_news = News.all
+			      @all_news = Rails.cache.fetch('search_index', {expires_in: 10000}) { 
+			      	News.order(pub_date: :desc).all
+			      }
 			    else
-			      @all_news = News.search params[:q]
+			      @all_news = Rails.cache.fetch('search_query_based', {expires_in: 10000}) { 
+			      	News.search params[:q]
+			      }
+			      @all_news.sort_by &:pub_date
 			    end
-			     render :json => @all_news
+			      formattedJson = News.source(@all_news) 
+			      render :json => {:news => formattedJson}
 			end
 
 			def autocomplete
@@ -77,30 +89,17 @@ module Api
 			  if params[:q].nil? or params[:q].empty?
 			    puts 'empty' #replace this
 			  else
-			    news = News.autocomplete params[:q]
+			    news = Rails.cache.fetch('autocomplete', {expires_in: 180}) { 
+			    	News.autocomplete params[:q]
+			    }
 			    news.results.each do |t|
-			      if t._score > 0.9 
+			      if t._score > 0.9 #Todo this
 			       titles.push(t._source.title)
 			      end
 			    end
 			  end
-			  render :json => titles.to_json  #news.results.to_json #    
+			  render :json => {:news => titles.to_json}  #news.results.to_json #    
 			end
-			def vote
-  				value = params[:query] == "up" ? 1 : -1
-   				@news = News.find(params[:id])
-   				puts "yooooo"
-
-  				@news.add_or_update_evaluation(:votes, value , @news)
-  				#puts "zinglilalala"
-  				#puts @news.reputation_for(:votes)
-  				render :json => @news
-  			end
-  			def get_votes
-				@news = News.find(params[:id2])
-  				@votes= @news.reputation_for(:votes)
-  				render :json => @votes.json
-  			end
 
 			private
 			  def news_params

@@ -27,8 +27,10 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
 gem 'stanford-core-nlp'
-gem 'activerecord-reputation-system' , require: 'reputation_system'
 
+gem 'rack-mini-profiler', '~> 0.9'
+
+gem 'dalli'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

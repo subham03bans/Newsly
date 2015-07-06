@@ -1,8 +1,6 @@
-#require 'stanford-core-nlp'
+require 'stanford-core-nlp'
 
 	class News < ActiveRecord::Base
-
-  	has_reputation :votes, source: :news, aggregated_by: :sum 
 
 		include Elasticsearch::Model
 	  	include Elasticsearch::Model::Callbacks
@@ -42,35 +40,34 @@
 	      )
 	  end
 
+	  def self.source(news)
+	  	formattedJson = Array.new;
+	  	news.each do |item|
+	  		formattedJson.push(item._source)
+	  	end
+	  	res = formattedJson
+	  end
+
 	  ##TODO
 		def self.summarise(news)
 			# Use the model files for a different language than English.
-=begin			StanfordCoreNLP.use :french # or :german
+			StanfordCoreNLP.use :english # or :german
 
-			text = 'Angela Merkel met Nicolas Sarkozy on January 25th in ' +
-			   'Berlin to discuss a new austerity package. Sarkozy ' +
-			   'looked pleased, but Merkel was dismayed.'
+			text = news.content
 
 			pipeline =  StanfordCoreNLP.load(:tokenize, :ssplit)
 			text = StanfordCoreNLP::Annotation.new(text)
 			pipeline.annotate(text)
 
-			text.get(:sentences).each do |sentence|
-				puts "Yo Yo!! "
-				puts sentence
-			  # Syntatical dependencies
-			  #puts sentence.get(:basic_dependencies).to_s
-			 # sentence.get(:tokens).each do |token|
-			    # Default annotations for all tokens
-			   # puts token.get(:value).to_s
-			   # puts token.get(:original_text).to_s
-			    #puts token.get(:character_offset_begin).to_s
-			    #puts token.get(:character_offset_end).to_s
-			  #end
+			summ_sentences = text.get(:sentences).to_a
+			summ_sentences.each do |sentence|
+				sentence = sentence.to_s
 			end
-=end			news.summary = "Hello Beautiful World!!"
+
+			summ_len = [3,summ_sentences.length].min
+
+			news.summary = summ_sentences[0,summ_len-1].join(' ')
 		end
 	end
 
-News.import
-
+	News.import
