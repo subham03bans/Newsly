@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/summary_layout_bg_color"
+    android:padding="0dp">
+
+    <ScrollView
+        android:id="@+id/scrollview1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/summary_contents">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/thumbnail_detailed_view"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/full_image"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:id="@+id/image_mask"
+                android:layout_width="fill_parent"
+                android:alpha="0.6"
+                android:layout_height="0dp"
+                android:layout_alignBottom="@id/thumbnail_detailed_view"
+                android:layout_alignTop="@id/thumbnail_detailed_view"
+                android:background="@drawable/rectangle_mask"/>
+
+
+            <TextView
+                android:id="@+id/headline_detailed_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/image_mask"
+                android:layout_alignBottom="@id/image_mask"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/headline_summary_color"
+                android:textSize="@dimen/headline_summary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/category_detailed_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/image_mask"
+                android:textColor="@color/india_cat_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/category" />
+
+            <WebView
+                android:id="@+id/contents_detailed_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/category_detailed_view"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/summary_content" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
+<!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/layout/activity_summary.xml -->

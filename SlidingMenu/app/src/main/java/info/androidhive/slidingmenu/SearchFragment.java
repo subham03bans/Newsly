@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment {
             Bundle savedInstanceState) {
         newsObjectsList = new ArrayList<NewsObject>();
  
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_news, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.list);
         adapter = new CustomListAdapter(this, newsObjectsList);
@@ -140,7 +140,7 @@ public class SearchFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                Intent intent= new Intent(getActivity(), MainActivity2Activity.class);
+                Intent intent= new Intent(getActivity(), SummaryActivity.class);
 
                 Log.e("passed jsonn contro12l", "" + newsObjectsList.get(i).headline);
                 intent.putExtra("type", "2");

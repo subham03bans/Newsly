@@ -9,10 +9,11 @@ package info.androidhive.slidingmenu;
 
 public final class R {
     public static final class anim {
-        public static final int pull_in_left=0x7f040000;
-        public static final int pull_in_right=0x7f040001;
-        public static final int push_out_left=0x7f040002;
-        public static final int push_out_right=0x7f040003;
+        public static final int fade_in=0x7f040000;
+        public static final int pull_in_left=0x7f040001;
+        public static final int pull_in_right=0x7f040002;
+        public static final int push_out_left=0x7f040003;
+        public static final int push_out_right=0x7f040004;
     }
     public static final class array {
         public static final int nav_drawer_icons=0x7f080000;
@@ -29,29 +30,34 @@ public final class R {
         public static final int entertainment_cat_color=0x7f090005;
         public static final int green_color=0x7f090006;
         public static final int headline_color=0x7f090007;
-        public static final int india_cat_color=0x7f090008;
-        public static final int list_background=0x7f090009;
-        public static final int list_background_pressed=0x7f09000a;
-        public static final int list_divider=0x7f09000b;
-        public static final int list_item_title=0x7f09000c;
-        public static final int list_row_end_color=0x7f09000d;
-        public static final int list_row_hover_end_color=0x7f09000e;
-        public static final int list_row_hover_start_color=0x7f09000f;
-        public static final int list_row_start_color=0x7f090010;
-        public static final int red_color=0x7f090011;
-        public static final int sports_cat_color=0x7f090012;
-        public static final int technology_cat_color=0x7f090013;
-        public static final int world_cat_color=0x7f090014;
+        public static final int headline_summary_color=0x7f090008;
+        public static final int india_cat_color=0x7f090009;
+        public static final int list_background=0x7f09000a;
+        public static final int list_background_pressed=0x7f09000b;
+        public static final int list_divider=0x7f09000c;
+        public static final int list_item_title=0x7f09000d;
+        public static final int list_row_end_color=0x7f09000e;
+        public static final int list_row_hover_end_color=0x7f09000f;
+        public static final int list_row_hover_start_color=0x7f090010;
+        public static final int list_row_start_color=0x7f090011;
+        public static final int red_color=0x7f090012;
+        public static final int sports_cat_color=0x7f090013;
+        public static final int summary_layout_bg_color=0x7f090014;
+        public static final int technology_cat_color=0x7f090015;
+        public static final int world_cat_color=0x7f090016;
     }
     public static final class dimen {
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
         public static final int category=0x7f060002;
-        public static final int headline=0x7f060003;
-        public static final int publisher_name=0x7f060004;
-        public static final int tags=0x7f060005;
-        public static final int votes=0x7f060006;
-        public static final int votes_image=0x7f060007;
+        public static final int full_image=0x7f060003;
+        public static final int headline=0x7f060004;
+        public static final int headline_summary=0x7f060005;
+        public static final int publisher_name=0x7f060006;
+        public static final int summary_content=0x7f060007;
+        public static final int tags=0x7f060008;
+        public static final int votes=0x7f060009;
+        public static final int votes_image=0x7f06000a;
     }
     public static final class drawable {
         public static final int counter_bg=0x7f020000;
@@ -70,51 +76,47 @@ public final class R {
         public static final int list_row_bg_hover=0x7f02000d;
         public static final int list_row_selector=0x7f02000e;
         public static final int list_selector=0x7f02000f;
+        public static final int rectangle_mask=0x7f020010;
     }
     public static final class id {
-        public static final int action_search=0x7f0c0018;
-        public static final int action_settings=0x7f0c0017;
-        public static final int category=0x7f0c0010;
-        public static final int category_detailed_view=0x7f0c0006;
-        public static final int contents_detailed_view=0x7f0c0007;
-        public static final int counter=0x7f0c000a;
-        public static final int downvotes=0x7f0c0016;
-        public static final int downvotes_image=0x7f0c0015;
+        public static final int action_search=0x7f0c0019;
+        public static final int action_settings=0x7f0c0018;
+        public static final int category=0x7f0c0011;
+        public static final int category_detailed_view=0x7f0c0008;
+        public static final int contents_detailed_view=0x7f0c0009;
+        public static final int counter=0x7f0c000c;
+        public static final int downvotes=0x7f0c0017;
+        public static final int downvotes_image=0x7f0c0016;
         public static final int drawer_layout=0x7f0c0000;
         public static final int frame_container=0x7f0c0001;
-        public static final int headline=0x7f0c000f;
-        public static final int headline_detailed_view=0x7f0c0005;
-        public static final int icon=0x7f0c0008;
-        public static final int list=0x7f0c000c;
-        public static final int list_row_content_layout=0x7f0c000e;
+        public static final int headline=0x7f0c0010;
+        public static final int headline_detailed_view=0x7f0c0007;
+        public static final int icon=0x7f0c000a;
+        public static final int image_mask=0x7f0c0006;
+        public static final int list=0x7f0c000d;
+        public static final int list_row_content_layout=0x7f0c000f;
         public static final int list_slidermenu=0x7f0c0002;
-        public static final int placeholder=0x7f0c0011;
-        public static final int pub_time=0x7f0c0012;
+        public static final int placeholder=0x7f0c0012;
+        public static final int pub_time=0x7f0c0013;
         public static final int scrollview1=0x7f0c0003;
-        public static final int thumbnail=0x7f0c000d;
-        public static final int thumbnail_detailed_view=0x7f0c0004;
-        public static final int title=0x7f0c0009;
-        public static final int txtLabel=0x7f0c000b;
-        public static final int upvotes=0x7f0c0014;
-        public static final int upvotes_image=0x7f0c0013;
+        public static final int summary_contents=0x7f0c0004;
+        public static final int thumbnail=0x7f0c000e;
+        public static final int thumbnail_detailed_view=0x7f0c0005;
+        public static final int title=0x7f0c000b;
+        public static final int upvotes=0x7f0c0015;
+        public static final int upvotes_image=0x7f0c0014;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_main_activity2=0x7f030001;
+        public static final int activity_summary=0x7f030001;
         public static final int drawer_list_item=0x7f030002;
-        public static final int fragment_community=0x7f030003;
-        public static final int fragment_find_people=0x7f030004;
-        public static final int fragment_home=0x7f030005;
-        public static final int fragment_myfragement=0x7f030006;
-        public static final int fragment_pages=0x7f030007;
-        public static final int fragment_photos=0x7f030008;
-        public static final int fragment_whats_hot=0x7f030009;
-        public static final int list_row=0x7f03000a;
+        public static final int fragment_news=0x7f030003;
+        public static final int list_row=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
-        public static final int menu_main_activity2=0x7f0b0001;
-        public static final int menu_searchable=0x7f0b0002;
+        public static final int menu_searchable=0x7f0b0001;
+        public static final int menu_summary=0x7f0b0002;
     }
     public static final class string {
         public static final int action_search=0x7f0a0000;
@@ -125,11 +127,13 @@ public final class R {
         public static final int drawer_open=0x7f0a0005;
         public static final int hello_blank_fragment=0x7f0a0006;
         public static final int hello_world=0x7f0a0007;
-        public static final int title_activity_main_activity2=0x7f0a0008;
-        public static final int title_activity_main_activity22=0x7f0a0009;
-        public static final int title_activity_searchable=0x7f0a000a;
-        public static final int try_url=0x7f0a000b;
-        public static final int vertical_bar_char=0x7f0a000c;
+        public static final int summary_content_template_close=0x7f0a0008;
+        public static final int summary_content_template_open=0x7f0a0009;
+        public static final int title_activity_main_activity2=0x7f0a000a;
+        public static final int title_activity_searchable=0x7f0a000b;
+        public static final int title_activity_summary=0x7f0a000c;
+        public static final int try_url=0x7f0a000d;
+        public static final int vertical_bar_char=0x7f0a000e;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

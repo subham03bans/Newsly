@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/image_mask">
+    <solid android:color="#ff000000" />
+</shape><!-- From: file:/Users/shubhambansal/Newsly/SlidingMenu/app/src/main/res/drawable/rectangle_mask.xml -->

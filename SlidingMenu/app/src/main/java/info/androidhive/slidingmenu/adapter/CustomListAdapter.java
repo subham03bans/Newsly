@@ -1,12 +1,16 @@
 package info.androidhive.slidingmenu.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import java.util.Date;
 
+import android.graphics.Color;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.app.Fragment;
@@ -22,13 +26,17 @@ import info.androidhive.slidingmenu.model.NewsObject;
 
 public class CustomListAdapter extends BaseAdapter {
 	private Fragment fragment;
+	private Activity activity;
 	private LayoutInflater inflater;
 	private List<NewsObject> newsObjectItems;
+	private Animation imageFadeInAnimation;
 	ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 	public CustomListAdapter(Fragment fragment, List<NewsObject> newsObjectItems) {
 		this.fragment = fragment;
 		this.newsObjectItems = newsObjectItems;
+		this.activity = this.fragment.getActivity();
+		imageFadeInAnimation = AnimationUtils.loadAnimation(fragment.getActivity().getApplicationContext(), R.anim.fade_in);
 	}
 
 	@Override
@@ -50,7 +58,7 @@ public class CustomListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		if (inflater == null)
-			inflater = (LayoutInflater) fragment.getActivity()
+			inflater = (LayoutInflater) activity
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		if (convertView == null)
 			convertView = inflater.inflate(R.layout.list_row, null);
@@ -59,6 +67,7 @@ public class CustomListAdapter extends BaseAdapter {
 			imageLoader = AppController.getInstance().getImageLoader();
 		NetworkImageView thumbNail = (NetworkImageView) convertView
 				.findViewById(R.id.thumbnail);
+		thumbNail.startAnimation(imageFadeInAnimation);
 
 		TextView headline = (TextView) convertView.findViewById(R.id.headline);
 		TextView category = (TextView) convertView.findViewById(R.id.category);
@@ -76,7 +85,7 @@ public class CustomListAdapter extends BaseAdapter {
 		headline.setText(newsObject.headline);
 
 		// category
-		category.setTextColor(fragment.getResources().getColor(getCategoryColor(newsObject.category)));
+		category.setTextColor(activity.getResources().getColor(getCategoryColor(newsObject.category)));
 		category.setText(newsObject.getCategory());
 
 

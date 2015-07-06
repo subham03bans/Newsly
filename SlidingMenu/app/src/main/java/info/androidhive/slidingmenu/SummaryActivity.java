@@ -1,61 +1,34 @@
 package info.androidhive.slidingmenu;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.Touch;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import info.androidhive.slidingmenu.app.AppController;
 import info.androidhive.slidingmenu.model.NewsObject;
 
-import static android.app.PendingIntent.getActivity;
 
-
-public class MainActivity2Activity extends Activity {
+public class SummaryActivity extends Activity {
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
     //left = 0 , right = 1
     static int SLIDE_DIR = 0;
-    private   int id=1;
-    int type=1;
+    private int id = 1;
+    private int type = 1;
+    private CurrentFragmentParcel parcel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,37 +37,38 @@ public class MainActivity2Activity extends Activity {
 
         id = Integer.parseInt(intent.getStringExtra("id"));
         type = Integer.parseInt(intent.getStringExtra("type"));
+        parcel = intent.getParcelableExtra("current_fragment");
 
 
-        NewsObject news_to_display= new NewsObject();
-        Log.e("Type is ", "" + type);
+        NewsObject newsToDisplay= new NewsObject();
+
         switch (type){
             case 1:
-                news_to_display = HomeFragment.get_news(id);
+                newsToDisplay = parcel.getNews(id);
                 break;
             case 2:
-                news_to_display = SearchFragment.get_news(id);
+                newsToDisplay = SearchFragment.get_news(id);
                 break;
         }
 
-//        NewsObject newsObjectsList = new NewsObject(t1);
-        setContentView(R.layout.activity_main_activity2);
+        setContentView(R.layout.activity_summary);
 
         TextView textView1 = (TextView) findViewById(R.id.headline_detailed_view);
-        TextView textView2 = (TextView) findViewById(R.id.contents_detailed_view);
+        WebView webView = (WebView) findViewById(R.id.contents_detailed_view);
         TextView category = (TextView) findViewById(R.id.category_detailed_view);
         ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview1);
-
         NetworkImageView imge1 = (NetworkImageView) findViewById(R.id.thumbnail_detailed_view);
 
+        imge1.setImageUrl(newsToDisplay.thumbnailUrl, AppController.getInstance().getImageLoader());
 
-       // new DownloadImageTask((ImageView) findViewById(R.id.thumbnail_detailed_view))
-         //       .execute(news_to_display.thumbnailUrl);
-        imge1.setImageUrl(news_to_display.thumbnailUrl, AppController.getInstance().getImageLoader());
+        textView1.setText(newsToDisplay.headline);
 
-        textView1.setText(news_to_display.headline);
-        textView2.setText(Html.fromHtml(news_to_display.summary));
-        category.setText(news_to_display.category);
+        String summary = getString(R.string.summary_content_template_open)
+                +newsToDisplay.summary
+                +getString(R.string.summary_content_template_close);
+        webView.loadData(summary, "text/html", "utf-8");
+
+        category.setText(newsToDisplay.category);
 
 
         scrollView.setOnTouchListener(new View.OnTouchListener() {
@@ -112,22 +86,20 @@ public class MainActivity2Activity extends Activity {
                             // Left to Right swipe action
                             if (x2 > x1) {
                                 SLIDE_DIR = 1;
-                                Toast.makeText(getApplicationContext(), "Loading next", Toast.LENGTH_SHORT).show();
-                                id =id -1;
+                                id = id -1;
                                 if(id<0){
-                                    id= 0;
-                                }else
+                                    id = 0;
+                                } else
                                     reload();
                             }
 
                             // Right to left swipe action
                             else {
                                 SLIDE_DIR = 0;
-                                Toast.makeText(getApplicationContext(), "Loading Previous", Toast.LENGTH_SHORT).show();
-                                id =id +1;
-                                if(id>=HomeFragment.get_news_numbers()){
-                                    id= id-1;
-                                }else
+                                id = id + 1;
+                                if(id >= parcel.getNewsCount()){
+                                    id = 0;
+                                } else
                                     reload();
                             }
 
@@ -147,27 +119,19 @@ public class MainActivity2Activity extends Activity {
     private void reload() {
         this.finish();
 
-        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollview1);
-        //scrollView.setVisibility(View.INVISIBLE);
-        Intent intent= new Intent(this, MainActivity2Activity.class);
-
-
+        Intent intent= new Intent(this, SummaryActivity.class);
         intent.putExtra("id", "" + id);
         intent.putExtra("type", "" + type);
+        intent.putExtra("current_fragment", parcel);
 
-        this.startActivity(intent);
         if (SLIDE_DIR==0) {
-            overridePendingTransition(R.anim.push_out_left, R.anim.pull_in_right);
-        }
-        else{
+            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+        } else{
             overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
         }
 
-        if(true) {
-            return;
-        }
-
-
+        this.startActivity(intent);
+        return;
     }
 
     @Override
@@ -200,40 +164,5 @@ public class MainActivity2Activity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
-
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
-    }
-
-    protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
-        try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }
-//        mIcon11.get
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        int height = size.y;
-        Bitmap new1= mIcon11.createScaledBitmap(mIcon11, width, (width / mIcon11.getWidth()) * mIcon11.getHeight(), true);
-        return  new1;
-    }
-
-    protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
-    }
-
-}
-
 }
 
